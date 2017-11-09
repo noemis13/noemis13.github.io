@@ -23,15 +23,15 @@ class PlayState extends GameState {
         // players
         this.player1 = new Player(this.game, this.game.width/1.5, this.game.height-140, 'player')    
         this.game.add.existing(this.player1)
-        /*this.gyro.frequency = 10;
+        gyro.frequency = 10;
 		// start gyroscope detection
-        this.gyro.startTracking(function(o) {
+        gyro.startTracking(function(o) {
                // updating player velocity
-               player1.body.velocity.x += o.gamma/20;
-               player1.body.velocity.y += o.beta/20;
+               this.player1.body.velocity.x += o.gamma/20;
+               this.player1.body.velocity.y += o.beta/20;
           });		 
         
-        */
+        
         
         // mapa com paredes
        // this.createMap()
