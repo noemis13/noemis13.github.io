@@ -5,10 +5,14 @@ class Player extends Phaser.Sprite {
         this.anchor.setTo(0.5, 0.5)
         this.scale.setTo(2, 2)
         this.inputEnabled = true
-        this.input.enableDrag(false, true)        
+        this.input.enableDrag(false, true)
+        //biblioteca gyro
+              
     }
 
-    update() {
-        // logica do player
-    }
+    //update() {
+        // mover player
+       
+    //}
+
 }
