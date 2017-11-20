@@ -21,17 +21,18 @@ class PlayState extends GameState {
       //  background.autoScroll(-30, 0)
 
         // players
-        this.player1 = new Player(this.game, this.game.width/1.5, this.game.height-140, 'player')    
-        this.game.add.existing(this.player1)
-        gyro.frequency = 10;
-		// start gyroscope detection
-        gyro.startTracking(function(o) {
-               // updating player velocity
-               this.player1.body.velocity.x += o.gamma/20;
-               this.player1.body.velocity.y += o.beta/20;
-          });		 
-        
-        
+        //this.player1 = new Player(this.game, this.game.width/1.5, this.game.height-140, 'player')    
+        //this.game.add.existing(this.player1)
+        this.player1 = this.game.add.sprite(this.game.width/1.5, this.game.height-140, 'player')
+        this.player1.anchor.setTo(0.5, 0.5)
+        this.player1.scale.setTo(2, 2)
+        this.game.physics.enable(this.player1, Phaser.Physics.ARCADE)
+        this.player1.body.collideWorldBounds = true
+
+        this.player1.body.bounce.set(0.8)
+
+        // Biblioteca Gyro
+        gyro.frequency = 10
         
         // mapa com paredes
        // this.createMap()

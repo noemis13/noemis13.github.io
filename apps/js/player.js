@@ -6,13 +6,8 @@ class Player extends Phaser.Sprite {
         this.scale.setTo(2, 2)
         this.inputEnabled = true
         this.input.enableDrag(false, true)
-        //biblioteca gyro
               
     }
 
-    //update() {
-        // mover player
-       
-    //}
 
 }
