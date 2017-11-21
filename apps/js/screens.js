@@ -31,15 +31,12 @@ class PlayState extends GameState {
         this.player1.body.collideWorldBounds = true
         this.player1.body.bounce.set(0.8)
         
-        gyro.frequency = 10	
-        
-        // Biblioteca Gyro
-        if(Phaser.Device.iOS) {	
-            this.player1.body.velocity.x = -(document.body.getAttribute("beta")* 20);
-        } else {	
-            this.player1.body.velocity.x = document.body.getAttribute("beta")* 20;
+        if(gyro.getFeatures().length > 0) {     
+            gyro.frequency = 10;     
+            gyro.startTracking(function(o) {     
+                this.player1.body.velocity.x += o.x;     
+                this.player1.body.velocity.y += o.y;     });
         }
-
 
 
         // mapa com paredes
