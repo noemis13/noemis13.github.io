@@ -35,10 +35,10 @@ class PlayState extends GameState {
         // Biblioteca Gyro
         if(Phaser.Device.iOS) {	
             //this.player1.body.velocity.x = -(document.body.getAttribute("beta") * 10);
-            this.player1.body.velocity.x = -(document.body.getAttribute("beta")*20)
+            this.player1.body.velocity.x = -(document.body.getAttribute("beta")*10)
         } else {	
             //this.player1.body.velocity.x = document.body.getAttribute("beta") * 10;
-            this.player1.body.velocity.x = document.body.getAttribute("beta")*20
+            this.player1.body.velocity.x = document.body.getAttribute("beta")*10
         }
 
         // mapa com paredes
