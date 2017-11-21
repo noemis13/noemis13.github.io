@@ -35,8 +35,7 @@ class PlayState extends GameState {
         // Controlar player
         this.keys = this.game.input.keyboard.createCursorKeys();
         
-        window.addEventListener("deviceorientation", this.handleOrientation, true);
-
+        
 
         /*if(gyro.getFeatures().length != 0) {     
             gyro.frequency = 10;     
@@ -76,7 +75,8 @@ class PlayState extends GameState {
             this.player1.body.velocity.y += this.movementForce;
         }
         
-           
+        window.addEventListener("deviceorientation", this.handleOrientation, true);
+        
     }
 
     handleOrientation(e) {
