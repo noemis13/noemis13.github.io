@@ -23,6 +23,7 @@ class PlayState extends GameState {
         // players
         //this.player1 = new Player(this.game, this.game.width/1.5, this.game.height-140, 'player')    
         //this.game.add.existing(this.player1)
+       
         this.player1 = this.game.add.sprite(this.game.width/1.5, this.game.height-140, 'player')
         this.player1.anchor.setTo(0.5, 0.5)
         this.player1.scale.setTo(2, 2)
@@ -32,16 +33,12 @@ class PlayState extends GameState {
         this.player1.body.bounce.set(0.8)
 
         // Biblioteca Gyro
-        //gyro.frequency = 10;
+        if(Phaser.Device.iOS) {	
+            this.player1.body.velocity.x = -(document.body.getAttribute("beta") * 60);
+        } else {	
+            this.player1.body.velocity.x = document.body.getAttribute("beta") * 60;
+        }
 
-        gyro.startTracking(function(o) {
-            gyro.getFeatures();
-            this.gyroa = o.alpha;
-            this.gyrob = o.beta;
-            this.gyrog = o.gamma;
-            
-        });*/   
-        
         // mapa com paredes
        // this.createMap()
 
