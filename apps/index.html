@@ -31,6 +31,13 @@
   <script src="js/enemies.js"></script>
   <script src="js/screens.js"></script>
   
+  <script>
+    gyro.startTracking(function(o) {
+      o.gamma/20;
+      o.beta/20;
+    });
+  </script>
+  
   
 </body>
 </html>

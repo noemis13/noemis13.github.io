@@ -33,7 +33,8 @@ class PlayState extends GameState {
 
         // Biblioteca Gyro
         gyro.frequency = 10;
-       
+       		
+ 
         // mapa com paredes
        // this.createMap()
 
