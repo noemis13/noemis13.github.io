@@ -1,5 +1,6 @@
-var player1
+
 class PlayState extends GameState {
+
     preload() {
         this.game.load.image('player', 'assets/ball.png')
         this.game.load.image('background', 'assets/fundoMadeira.jpg')
@@ -30,19 +31,19 @@ class PlayState extends GameState {
         this.game.physics.enable(this.player1, Phaser.Physics.ARCADE)
         this.player1.body.collideWorldBounds = true
         this.player1.body.bounce.set(0.8)
+    
+        // Controlar player
+        this.keys = this.game.input.keyboard.createCursorKeys();
         
-        
+        window.addEventListener("deviceorientation", this.handleOrientation, true);
+
+
         /*if(gyro.getFeatures().length != 0) {     
             gyro.frequency = 10;     
             gyro.startTracking(function(o) {     
                 this.player1.body.velocity.x += o.gamma;     
                 this.player1.body.velocity.y += o.beta;     });
         }*/
-        window.addEventListener("deviceorientation", this.handleOrientation, true);
-
-
-        // mapa com paredes
-       // this.createMap()
 
         // HUD
         this.text1 = this.createHealthText(this.game.width*1/9, 50, 'PLAYER A: 5')
@@ -51,22 +52,6 @@ class PlayState extends GameState {
         super.initFullScreenButtons()
     }
 
-    handleOrientation(e) {
-        var z = e.alpha;
-        var y = e.beta;
-        var x = e.gamma;
-        this.player1.body.velocity.x += x;
-        this.player1.body.velocity.y += y;
-    }
-    createExplosion(x, y) {
-        let explosion = game.add.sprite(x, y, 'explosion')
-        let anim = explosion.animations.add('full', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15] , 60, false)
-        explosion.scale.setTo(0.5, 0.5)
-        explosion.anchor.setTo(0.5, 0.5)   
-        explosion.animations.add('four', [4] , 20, true)    
-        explosion.animations.play('full')
-        anim.onComplete.add( () => explosion.kill() )
-    }
 
     createHealthText(x, y, string) {
         let style = {font: 'bold 16px Arial', fill: 'white'}
@@ -76,47 +61,30 @@ class PlayState extends GameState {
         return text
     }
 
-    createMap() {
-        let mapData = [ "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-                        "X                              X",
-                        "X                              X",
-                        "X                              X",
-                        "X                              X",
-                        "X                              X",
-                        "X          XXXXXXXXXXX         X",
-                        "X          X         X         X",
-                        "X                              X",
-                        "X                              X",
-                        "X                              X",
-                        "X                              X",
-                        "X          X         X         X",
-                        "X          XXXXXXXXXXX         X",
-                        "X                              X",
-                        "X                              X",
-                        "X                              X",
-                        "X                              X",
-                        "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"]
-                        
-        this.map = this.game.add.group()
-        for (let row = 0; row < mapData.length; row++) {
-            for (let col = 0; col < mapData[0].length; col++) {
-                if (mapData[row][col] == 'X') {
-                    let block = this.map.create(col*32, row*32, 'wall')
-                    block.scale.setTo(0.5, 0.5)
-                    this.game.physics.arcade.enable(block)
-                    block.body.immovable = true
-                    block.tag = 'wall'
-                    block.inputEnabled = true
-                    block.input.enableDrag(false, true)        
-                }
-            }
+    update() { 
+        // Mover player
+        if(this.keys.left.isDown) {
+            this.player1.body.velocity.x -= this.movementForce;
         }
+        else if(this.keys.right.isDown) {
+            this.player1.body.velocity.x += this.movementForce;
+        }
+        if(this.keys.up.isDown) {
+            this.player1.body.velocity.y -= this.movementForce;
+        }
+        else if(this.keys.down.isDown) {
+            this.player1.body.velocity.y += this.movementForce;
+        }
+        
+           
     }
 
-    update() { 
-        // colisoes
-        // this.game.physics.arcade.collide(player1, bullets2, hitPlayer)
-        
+    handleOrientation(e) {
+        var z = e.alpha;
+        var y = e.beta;
+        var x = e.gamma;
+        this.player1.body.velocity.x += x;
+        this.player1.body.velocity.y += y;
     }
 
     updateHud() {
