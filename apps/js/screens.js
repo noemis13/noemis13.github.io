@@ -33,7 +33,8 @@ class PlayState extends GameState {
         this.player1.body.bounce.set(0.8)
     
         // Controlar player
-        this.keys = this.game.input.keyboard.createCursorKeys();
+        
+        window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
         
         
 
@@ -62,8 +63,6 @@ class PlayState extends GameState {
 
     update() { 
         // Mover player
-        window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
-        
     }
 
     handleOrientation(e) {
