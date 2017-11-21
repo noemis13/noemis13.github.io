@@ -1,4 +1,4 @@
-
+var player1
 class PlayState extends GameState {
     preload() {
         this.game.load.image('player', 'assets/ball.png')
@@ -32,12 +32,13 @@ class PlayState extends GameState {
         this.player1.body.bounce.set(0.8)
         
         
-        if(gyro.getFeatures().length > 0) {     
+        /*if(gyro.getFeatures().length != 0) {     
             gyro.frequency = 10;     
             gyro.startTracking(function(o) {     
                 this.player1.body.velocity.x += o.gamma;     
                 this.player1.body.velocity.y += o.beta;     });
-        }
+        }*/
+        window.addEventListener("deviceorientation", this.handleOrientation, true);
 
 
         // mapa com paredes
@@ -50,6 +51,13 @@ class PlayState extends GameState {
         super.initFullScreenButtons()
     }
 
+    handleOrientation(e) {
+        var z = e.alpha;
+        var y = e.beta;
+        var x = e.gamma;
+        this.player1.body.velocity.x += x;
+        this.player1.body.velocity.y += y;
+    }
     createExplosion(x, y) {
         let explosion = game.add.sprite(x, y, 'explosion')
         let anim = explosion.animations.add('full', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15] , 60, false)
