@@ -3,8 +3,8 @@ class PlayState extends GameState {
 
     preload() {
         this.game.load.image('player', 'assets/ball.png')
-        this.game.load.image('background', 'assets/fundoMadeira.jpg')
-        this.game.load.image('box', 'assets/box.png')
+        this.game.load.image('background', 'assets/wood.jpg')
+        this.game.load.image('box', 'assets/woodBoard.png')
         this.game.load.image('saw', 'assets/saw.png')
         this.game.load.spritesheet('explosion', 'assets/explosion.png', 56, 56)
         this.game.load.image('fullscreen-button', 'assets/fullscreen-button.png')
@@ -56,18 +56,20 @@ class PlayState extends GameState {
     }*/
 
     createMap_old() {
-        let mapData = [ "  X                     X                    ",
-                        "                                             ",
-                        "                                             ",
-                        "                                             ",
-                        "             X                     X         ",
-                        "                                             ",
-                        "                                             ",
-                        "                                             ",
-                        "  X                     X                    ",
-                        "                                             ",
-                        "                                             ",
-                        "                                             "]
+        let mapData = [ "                       ",
+                        "                       ",
+                        "    X              X   ",
+                        "                       ",
+                        "                       ",
+                        "                       ",
+                        "            X          ",
+                        "                       ",
+                        "                       ",
+                        "                       ",
+                        "    X              X   ",
+                        "                       ",
+                        "                       ",
+                        "                       "]
                         
         this.map = this.game.add.group()
         for (let row = 0; row < mapData.length; row++) {
