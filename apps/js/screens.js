@@ -31,6 +31,7 @@ class PlayState extends GameState {
         this.player1.body.collideWorldBounds = true
         this.player1.body.bounce.set(0.8)
         
+        gyro.frequency = 10	
         
         // Biblioteca Gyro
         if(Phaser.Device.iOS) {	
