@@ -62,7 +62,6 @@ class PlayState extends GameState {
 
     update() { 
         // Mover player
-        keys = this.game.input.keyboard.createCursorKeys();
         window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
         
     }
