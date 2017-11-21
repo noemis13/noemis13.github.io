@@ -31,14 +31,15 @@ class PlayState extends GameState {
         this.player1.body.collideWorldBounds = true
         this.player1.body.bounce.set(0.8)
         
-        gyro.frequency = 10	
+        window.addEventListener("deviceorientation", this.handleOrientation, true);
+        //gyro.frequency = 10	
         
         // Biblioteca Gyro
-        if(Phaser.Device.iOS) {	
+        /*if(Phaser.Device.iOS) {	
             this.player1.body.velocity.x = -(document.body.getAttribute("beta"));
         } else {	
             this.player1.body.velocity.x = document.body.getAttribute("beta");
-        }
+        }*/
         // mapa com paredes
        // this.createMap()
 
@@ -49,6 +50,12 @@ class PlayState extends GameState {
         super.initFullScreenButtons()
     }
 
+    handleOrientation(e){
+        var x = e.gamma;
+        var y = e.beta;
+        this.player1.body.velocity.x += x;
+        this.player1.body.velocity.y += y;
+    }
     createExplosion(x, y) {
         let explosion = game.add.sprite(x, y, 'explosion')
         let anim = explosion.animations.add('full', [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15] , 60, false)
