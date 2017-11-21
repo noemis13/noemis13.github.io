@@ -32,14 +32,16 @@ class PlayState extends GameState {
         this.player1.body.bounce.set(0.8)
 
         // Biblioteca Gyro
-        gyro.frequency = 10;
-           
-        gyro.startTracking(function(o){
-            this.player1.body.velocity.x = o.gamma/20
-            this.player1.body.velocity.y = o.beta/20 
+        //gyro.frequency = 10;
 
-        })
- 
+        gyro.startTracking(function(o) {
+            gyro.getFeatures();
+            this.gyroa = o.alpha;
+            this.gyrob = o.beta;
+            this.gyrog = o.gamma;
+            
+        });   
+        
         // mapa com paredes
        // this.createMap()
 
@@ -108,7 +110,8 @@ class PlayState extends GameState {
     update() { 
         // colisoes
         // this.game.physics.arcade.collide(player1, bullets2, hitPlayer)
-
+        
+        this.handleOrientation(this.gyrog, this.gyrob);
     }
 
     updateHud() {
@@ -120,6 +123,22 @@ class PlayState extends GameState {
     //    game.debug.body(player1)
     //    game.debug.body(player2)
     }
+
+    handleOrientation(xgyrog, ygyrob) {
+        
+                 this.xgyrog = this.gyrog;
+        
+                this.ygyrob = this.gyrob;
+        
+               var x = xgyrog; // range [-90,90]
+        
+                 var y = ygyrob;  // range [-180,180]
+        
+                 this.player1.body.velocity.x += x/4;
+        
+                 this.player1.body.velocity.y += y*5;
+        
+                    }         
 }
 
 window.onload = function() {
