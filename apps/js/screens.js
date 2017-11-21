@@ -34,8 +34,8 @@ class PlayState extends GameState {
         if(gyro.getFeatures().length > 0) {     
             gyro.frequency = 10;     
             gyro.startTracking(function(o) {     
-                this.player1.body.velocity.x += o.x;     
-                this.player1.body.velocity.y += o.y;     });
+                this.player1.body.velocity.x += o.gamma;     
+                this.player1.body.velocity.y += o.beta;     });
         }
 
 
