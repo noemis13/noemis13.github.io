@@ -35,9 +35,9 @@ class PlayState extends GameState {
         
         // Biblioteca Gyro
         if(Phaser.Device.iOS) {	
-            this.player1.body.velocity.x = -(document.body.getAttribute("beta"));
+            this.player1.body.velocity.x = -(document.body.getAttribute("beta")* 20);
         } else {	
-            this.player1.body.velocity.x = document.body.getAttribute("beta");
+            this.player1.body.velocity.x = document.body.getAttribute("beta")* 20;
         }
 
 
