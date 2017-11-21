@@ -91,7 +91,6 @@ class PlayState extends GameState {
         }
     }
 
-
     handleOrientation(e) {
         var z = e.alpha;
         var y = e.beta;
