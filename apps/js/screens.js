@@ -69,8 +69,8 @@ class PlayState extends GameState {
         var z = e.alpha;
         var y = e.beta;
         var x = e.gamma;
-        this.player1.body.velocity.x += x;
-        this.player1.body.velocity.y += y;
+        this.player1.body.velocity.x += x/20;
+        this.player1.body.velocity.y += y/20;
     }
 
     updateHud() {
