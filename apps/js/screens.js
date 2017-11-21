@@ -1,8 +1,8 @@
 
 class PlayState extends GameState {
     preload() {
-        this.game.load.image('player', 'assets/car.png')
-        this.game.load.image('background', 'assets/roadBackground2.jpg')
+        this.game.load.image('player', 'assets/ball.png')
+        this.game.load.image('background', 'assets/fundoMadeira.jpg')
         this.game.load.image('shot', 'assets/shot.png')
         this.game.load.image('saw', 'assets/saw.png')
         this.game.load.spritesheet('explosion', 'assets/explosion.png', 56, 56)
@@ -26,7 +26,7 @@ class PlayState extends GameState {
        
         this.player1 = this.game.add.sprite(this.game.width/1.5, this.game.height-140, 'player')
         this.player1.anchor.setTo(0.5, 0.5)
-        this.player1.scale.setTo(2, 2)
+        this.player1.scale.setTo(0.02, 0.02)
         this.game.physics.enable(this.player1, Phaser.Physics.ARCADE)
         this.player1.body.collideWorldBounds = true
         this.player1.body.bounce.set(0.8)
