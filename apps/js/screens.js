@@ -34,7 +34,7 @@ class PlayState extends GameState {
     
         // Controlar player
         
-        window.addEventListener("deviceorientation",  this.handleOrientation, true);
+        window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
         
         
 
