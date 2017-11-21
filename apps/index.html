@@ -8,7 +8,7 @@
   
 </head>
 
-<body beta="0" gamma = "0">
+<body beta="0" >
 
 
   <div class="container">
@@ -33,12 +33,9 @@
   <script type="text/javascript">	
     gyro.frequency = 10	
     gyro.startTracking(function(e) {		
-      if(e.beta !== undefined){			
+      if(e.beta !== undefined)			
         document.body.setAttribute("BETA", e.beta);	
-      }
-      if(e.gamma !== undefined){			
-        document.body.setAttribute("GAMMA", e.gamma);	
-      }
+      
       });
 
   </script>
