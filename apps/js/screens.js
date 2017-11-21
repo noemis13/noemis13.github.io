@@ -22,9 +22,7 @@ class PlayState extends GameState {
       //  background.autoScroll(-30, 0)
 
         // players
-        //this.player1 = new Player(this.game, this.game.width/1.5, this.game.height-140, 'player')    
-        //this.game.add.existing(this.player1)
-       
+        
         this.player1 = this.game.add.sprite(this.game.width/1.5, this.game.height-140, 'player')
         this.player1.anchor.setTo(0.5, 0.5)
         this.player1.scale.setTo(0.02, 0.02)
@@ -59,8 +57,8 @@ class PlayState extends GameState {
         var z = e.alpha;
         var y = e.beta;
         var x = e.gamma;
-        this.player1.body.velocity.x -= y*2;
-        this.player1.body.velocity.y -= x*4;
+        this.player1.body.velocity.x += x*2;
+        this.player1.body.velocity.y += y*4;
     }
 
     updateHud() {
