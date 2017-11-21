@@ -33,11 +33,9 @@ class PlayState extends GameState {
         this.player1.body.bounce.set(0.8)
     
         // Controlar player
-        
         window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
         
         
-
         /*if(gyro.getFeatures().length != 0) {     
             gyro.frequency = 10;     
             gyro.startTracking(function(o) {     
@@ -70,7 +68,7 @@ class PlayState extends GameState {
         var y = e.beta;
         var x = e.gamma;
         this.player1.body.velocity.x -= x*2;
-        this.player1.body.velocity.y -= y*2;
+        this.player1.body.velocity.y -= y*4;
     }
 
     updateHud() {
