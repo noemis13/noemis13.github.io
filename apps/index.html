@@ -35,8 +35,9 @@
     gyro.frequency = 100	
     gyro.startTracking(function(e) {		
       //if(e.beta !== undefined)			
-      document.body.setAttribute("BETA", e.beta);	}
-      );
+      //document.body.setAttribute("BETA", e.beta);	}
+      document.body.setAttribute("BETA", e.beta/20);          
+    });
   </script>
 
 </body>

@@ -30,15 +30,13 @@ class PlayState extends GameState {
         this.game.physics.enable(this.player1, Phaser.Physics.ARCADE)
         this.player1.body.collideWorldBounds = true
         this.player1.body.bounce.set(0.8)
-
-        gyro.frequency = 10;
         
         
         // Biblioteca Gyro
         if(Phaser.Device.iOS) {	
-            this.player1.body.velocity.x = -(document.body.getAttribute("beta") * 20);
+            this.player1.body.velocity.x = -(document.body.getAttribute("beta"));
         } else {	
-            this.player1.body.velocity.x = document.body.getAttribute("beta") * 20;
+            this.player1.body.velocity.x = document.body.getAttribute("beta");
         }
         // mapa com paredes
        // this.createMap()
