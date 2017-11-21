@@ -33,7 +33,12 @@ class PlayState extends GameState {
 
         // Biblioteca Gyro
         gyro.frequency = 10;
-       		
+           
+        gyro.startTracking(function(o){
+            this.player1.body.velocity.x = o.gamma/20
+            this.player1.body.velocity.y = o.beta/20 
+
+        })
  
         // mapa com paredes
        // this.createMap()
