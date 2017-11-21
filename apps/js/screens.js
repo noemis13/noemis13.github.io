@@ -62,20 +62,8 @@ class PlayState extends GameState {
 
     update() { 
         // Mover player
-        if(this.keys.left.isDown) {
-            this.player1.body.velocity.x -= this.movementForce;
-        }
-        else if(this.keys.right.isDown) {
-            this.player1.body.velocity.x += this.movementForce;
-        }
-        if(this.keys.up.isDown) {
-            this.player1.body.velocity.y -= this.movementForce;
-        }
-        else if(this.keys.down.isDown) {
-            this.player1.body.velocity.y += this.movementForce;
-        }
         
-        window.addEventListener("deviceorientation", this.handleOrientation, true);
+        window.addEventListener("deviceorientation", this.handleOrientation(this), true);
         
     }
 
