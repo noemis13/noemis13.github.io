@@ -95,8 +95,8 @@ class PlayState extends GameState {
         var z = e.alpha;
         var y = e.beta;
         var x = e.gamma;
-        this.player1.body.velocity.x -= x*2;
-        this.player1.body.velocity.y -= y*4;
+        this.player1.body.velocity.x += x*2;
+        this.player1.body.velocity.y += y*4;
     }
 
     createHealthText(x, y, string) {
