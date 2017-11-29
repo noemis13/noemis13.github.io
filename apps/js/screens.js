@@ -3,10 +3,11 @@ class PlayState extends GameState {
 
     preload() {
         this.game.load.image('player', 'assets/ball.png')
-        this.game.load.image('background', 'assets/wood.jpg')
+        this.game.load.image('background', 'assets/fundoMadeira.jpg')
         this.game.load.image('box', 'assets/woodBoard.png')
         this.game.load.image('saw', 'assets/saw.png')
-        this.game.load.spritesheet('explosion', 'assets/explosion.png', 56, 56)
+        this.game.load.spritesheet('hole', 'assets/hole.png', 515, 526)
+
         this.game.load.image('fullscreen-button', 'assets/fullscreen-button.png')
     }
 
@@ -33,6 +34,8 @@ class PlayState extends GameState {
         this.game.physics.enable(this.player1, Phaser.Physics.ARCADE)
         this.player1.body.collideWorldBounds = true
         this.player1.body.bounce.set(0.8)
+        this.player1.body.maxVelocity = 200
+        this.player1.body.drag.set(100)
     
         // Controlar player
         window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
