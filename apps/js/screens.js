@@ -34,8 +34,8 @@ class PlayState extends GameState {
         this.game.physics.enable(this.player1, Phaser.Physics.ARCADE)
         this.player1.body.collideWorldBounds = true
         this.player1.body.bounce.set(0.8)
-        this.player1.body.maxVelocity = 200
-        this.player1.body.drag.set(100)
+        this.player1.body.maxVelocity = 68
+        this.player1.body.drag.set(200)
     
         // Controlar player
         window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
