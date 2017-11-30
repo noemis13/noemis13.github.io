@@ -23,3 +23,14 @@ class Saw extends Phaser.Sprite {
         // logica do npc
     }
 }
+
+class Block extends Phaser.TileSprite {
+    constructor(game, x, y, asset) {
+        super(game, x, y, 100, 20, asset)
+        this.game.physics.arcade.enable(this)
+        this.body.syncBounds = true
+        this.body.immovable = true
+        this.tag = 'wood'
+        this.autoCull = true
+    }
+}

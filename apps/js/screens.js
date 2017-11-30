@@ -9,6 +9,8 @@ class PlayState extends GameState {
         this.game.load.spritesheet('hole', 'assets/hole.png', 515, 526)
 
         this.game.load.image('fullscreen-button', 'assets/fullscreen-button.png')
+
+        this.game.load.tilemap('level1', 'assets/map.json', null, Phaser.Tilemap.TILED_JSON)
     }
 
     create() {
@@ -24,8 +26,8 @@ class PlayState extends GameState {
 
 
         // Mapa do jogo
-        //this.createMap()
-        this.createMap_old()
+        this.createMap()
+       // this.createMap_old()
         
         // players
         this.player1 = this.game.add.sprite(this.game.width/1.5, this.game.height-140, 'player')
@@ -49,14 +51,14 @@ class PlayState extends GameState {
 
     
 
-    /*createMap(){
+    createMap(){
         let mapTmx = this.game.add.tilemap('level1');
         this.game.world.setBounds(0, 0, mapTmx.widthInPixels, mapTmx.heightInPixels);
 
         this.map = this.game.add.group()   
-        mapTmx.createFromObjects('Object Layer 1', 1, 'box', 0, true, false, this.map, Block);
+        mapTmx.createFromObjects('Camada de Objetos 1', 1, 'box', 0, true, false, this.map, Block);
 
-    }*/
+    }
 
     createMap_old() {
         let mapData = [ "                       ",
