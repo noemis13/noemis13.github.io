@@ -43,7 +43,7 @@ class PlayState extends GameState {
         window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
         
         // HUD
-        this.text1 = this.createHealthText(this.game.width*1/9, 50, 'V3')
+        this.text1 = this.createHealthText(this.game.width*1/9, 50, 'V4')
         
         // adicionar controles de full screen a tela
         super.initFullScreenButtons()
