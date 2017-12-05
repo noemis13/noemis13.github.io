@@ -18,9 +18,12 @@ class PlayState extends GameState {
         //game.renderer.clearBeforeRender = false
         this.game.physics.startSystem(Phaser.Physics.ARCADE)
         
-        let background = this.game.add.sprite(0, 0,  'background')
-        background.scale.x = this.game.width/background.width
-        background.scale.y = this.game.height/background.height
+        let background = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'background')
+       // background.scale.x = this.game.width/background.width
+       // background.scale.y = this.game.height/background.height
+        //background.autoScroll(-30, 0)
+        background.fixedToCamera = true
+
        //let background = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'background')
       //  background.autoScroll(-30, 0)
 
@@ -40,14 +43,13 @@ class PlayState extends GameState {
         this.player1.body.drag.set(200)
         this.player1.body.setCircle(14);
         
-
         this.game.camera.follow(this.player1)
     
         // Controlar player
         window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
         
         // HUD
-        this.text1 = this.createHealthText(this.game.width*1/9, 50, 'V6')
+        this.text1 = this.createHealthText(this.game.width*1/9, 50, 'V7')
         
         // adicionar controles de full screen a tela
         super.initFullScreenButtons()
