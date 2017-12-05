@@ -37,9 +37,10 @@ class PlayState extends GameState {
         this.player1.anchor.setTo(0.5, 0.5)
         this.player1.scale.setTo(0.02, 0.02)
         this.game.physics.enable(this.player1, Phaser.Physics.ARCADE)
+        
         this.player1.body.collideWorldBounds = true
         this.player1.body.bounce.set(0.8)
-        this.player1.body.maxVelocity = 68
+        this.player1.body.maxVelocity = 10
         this.player1.body.drag.set(200)
         this.player1.body.setCircle(14);
         
