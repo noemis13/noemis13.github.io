@@ -38,6 +38,10 @@ class PlayState extends GameState {
         this.player1.body.bounce.set(0.8)
         this.player1.body.maxVelocity = 68
         this.player1.body.drag.set(200)
+        this.player1.body.setCircle(14);
+        
+
+        this.game.camera.follow(this.player1)
     
         // Controlar player
         window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
@@ -60,48 +64,13 @@ class PlayState extends GameState {
 
     }
 
-    createMap_old() {
-        let mapData = [ "                       ",
-                        "                       ",
-                        "    X              X   ",
-                        "                       ",
-                        "                       ",
-                        "                       ",
-                        "            X          ",
-                        "                       ",
-                        "                       ",
-                        "                       ",
-                        "    X              X   ",
-                        "                       ",
-                        "                       ",
-                        "                       "]
-                        
-        this.map = this.game.add.group()
-        for (let row = 0; row < mapData.length; row++) {
-            for (let col = 0; col < mapData[0].length; col++) {
-                if (mapData[row][col] == 'X') {
-                    let block = this.map.create(col*32, row*32, 'box')
-                    //block.width = 60
-                    //block.height= 60
-                    //this.map.add(block)
-                    this.game.physics.arcade.enable(block)
-                    block.body.immovable = true
-                    block.tag = 'box'
-                    block.autoCull = true
-                    block.scale.setTo(0.2, 0.2)
-                    block.inputEnabled = true
-                    block.input.enableDrag(false, true)        
-                }
-            }
-        }
-    }
 
     handleOrientation(e) {
         var z = e.alpha;
         var y = e.beta;
         var x = e.gamma;
-        this.player1.body.acceleration.x += x;
-        this.player1.body.acceleration.y += y;
+        this.player1.body.acceleration.x = x;
+        this.player1.body.acceleration.y = y;
     }
 
     createHealthText(x, y, string) {
@@ -130,8 +99,9 @@ class PlayState extends GameState {
 
     render() {
     //    game.debug.body(npc)
-    //    game.debug.body(player1)
+        this.game.debug.body(this.player1)
     //    game.debug.body(player2)
+
     }
 }
 
