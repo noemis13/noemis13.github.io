@@ -39,13 +39,13 @@ class Hole extends Phaser.Sprite {
     constructor(game, x, y, asset) {
         super(game, x, y, 100, 20, asset)
         this.game.physics.arcade.enable(this)
-        this.animations.add('full', [0, 1, 2, 3, 4, 5], 40, true) //criar a animação com frames para estados dos sprites (0 a n)
+//        this.animations.add('full', [0, 1, 2, 3, 4, 5], 40, true) //criar a animação com frames para estados dos sprites (0 a n)
 
         this.body.syncBounds = true
         this.body.immovable = true
         this.tag = 'hole'
         this.autoCull = true
-        this.animations.play('full')
+  //      this.animations.play('full')
         
     }
 }
