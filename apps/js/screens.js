@@ -40,8 +40,8 @@ class PlayState extends GameState {
         
         this.player1.body.collideWorldBounds = true
         this.player1.body.bounce.set(0.3, 0.3)
-        this.player1.body.maxVelocity = 100
-        //this.player1.body.drag.set(200)
+        this.player1.body.maxVelocity = 50
+        this.player1.body.drag.set(200)
         this.player1.body.setCircle(14);
         
         this.game.camera.follow(this.player1)
