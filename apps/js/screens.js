@@ -41,7 +41,7 @@ class PlayState extends GameState {
         this.player1.body.collideWorldBounds = true
         this.player1.body.bounce.set(0.3, 0.3)
         this.player1.body.maxVelocity = 50
-        this.player1.body.drag.set(200)
+        this.player1.body.drag.set(100)
         this.player1.body.setCircle(14);
         
         this.game.camera.follow(this.player1)
@@ -50,7 +50,7 @@ class PlayState extends GameState {
         window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
         
         // HUD
-        this.text1 = this.createHealthText(this.game.width*1/9, 50, 'V2')
+        this.text1 = this.createHealthText(this.game.width*1/9, 50, 'V3')
         
         // adicionar controles de full screen a tela
         super.initFullScreenButtons()
