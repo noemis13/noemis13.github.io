@@ -39,8 +39,8 @@ class PlayState extends GameState {
         this.game.physics.enable(this.player1, Phaser.Physics.ARCADE)
         
         this.player1.body.collideWorldBounds = true
-        //this.player1.body.bounce.set(0.8)
-        //this.player1.body.maxVelocity = 100
+        this.player1.body.bounce.set(0.3, 0.3)
+        this.player1.body.maxVelocity = 100
         //this.player1.body.drag.set(200)
         this.player1.body.setCircle(14);
         
@@ -50,7 +50,7 @@ class PlayState extends GameState {
         window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
         
         // HUD
-        this.text1 = this.createHealthText(this.game.width*1/9, 50, 'V1')
+        this.text1 = this.createHealthText(this.game.width*1/9, 50, 'V2')
         
         // adicionar controles de full screen a tela
         super.initFullScreenButtons()
@@ -74,8 +74,8 @@ class PlayState extends GameState {
         var z = e.alpha;
         var y = e.beta;
         var x = e.gamma;
-        this.player1.body.acceleration.x = x;
-        this.player1.body.acceleration.y = y;
+        this.player1.body.acceleration.x += x;
+        this.player1.body.acceleration.y += y;
     }
 
     createHealthText(x, y, string) {
