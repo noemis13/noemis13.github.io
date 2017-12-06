@@ -4,13 +4,12 @@ class PlayState extends GameState {
     preload() {
         this.game.load.image('player', 'assets/ball.png')
         this.game.load.image('background', 'assets/fundoMadeira.jpg')
-        this.game.load.image('box', 'assets/woodBoard.png')
-        this.game.load.image('saw', 'assets/saw.png')
+        this.game.load.image('box', 'assets/box1.png')
         this.game.load.spritesheet('hole', 'assets/hole.png', 515, 526)
 
         this.game.load.image('fullscreen-button', 'assets/fullscreen-button.png')
 
-        this.game.load.tilemap('level1', 'assets/map.json', null, Phaser.Tilemap.TILED_JSON)
+        this.game.load.tilemap('level1', 'assets/mapa.json', null, Phaser.Tilemap.TILED_JSON)
     }
 
     create() {
@@ -37,12 +36,13 @@ class PlayState extends GameState {
         this.player1.anchor.setTo(0.5, 0.5)
         this.player1.scale.setTo(0.02, 0.02)
         this.game.physics.enable(this.player1, Phaser.Physics.ARCADE)
-        
+        this.player1.body.setCircle(this.width/2);
+        console.log(this.player1.body.isCircle)
         this.player1.body.collideWorldBounds = true
         this.player1.body.bounce.set(0.3, 0.3)
         this.player1.body.maxVelocity = 50
         this.player1.body.drag.set(100)
-        this.player1.body.setCircle(14);
+        
         
         this.game.camera.follow(this.player1)
     
@@ -65,8 +65,9 @@ class PlayState extends GameState {
         this.game.world.setBounds(0, 0, mapTmx.widthInPixels, mapTmx.heightInPixels);
 
         this.map = this.game.add.group()   
-        mapTmx.createFromObjects('Camada de Objetos 1', 1, 'box', 0, true, false, this.map, Block);
-
+        mapTmx.createFromObjects('Object Layer 1', 1, 'box', 0, true, false, this.map, Block);
+        mapTmx.createFromObjects('Object Layer 1', 2, 'hole', 0, true, false, this.map, Hole);
+        
     }
 
 
@@ -104,7 +105,7 @@ class PlayState extends GameState {
 
     render() {
     //    game.debug.body(npc)
-     //   this.game.debug.body(this.player1)
+        this.game.debug.body(this.player1)
     //    game.debug.body(player2)
 
     }
