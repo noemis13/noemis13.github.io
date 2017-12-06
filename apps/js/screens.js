@@ -5,7 +5,7 @@ class PlayState extends GameState {
         this.game.load.image('player', 'assets/ball.png')
         this.game.load.image('background', 'assets/fundoMadeira.jpg')
         this.game.load.image('box', 'assets/box.png')
-        this.game.load.spritesheet('hole', 'assets/hole.png', 515, 526)
+        this.game.load.spritesheet('hole', 'assets/hole.png', 265, 253)
 
         this.game.load.image('fullscreen-button', 'assets/fullscreen-button.png')
 
@@ -50,7 +50,7 @@ class PlayState extends GameState {
         window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
         
         // HUD
-        this.text1 = this.createHealthText(this.game.width*1/9, 50, 'V4')
+        this.text1 = this.createHealthText(this.game.width*1/9, 50, 'V5')
         
         // adicionar controles de full screen a tela
         super.initFullScreenButtons()
@@ -58,15 +58,20 @@ class PlayState extends GameState {
         
     }
 
-    
-
     createMap(){
         let mapTmx = this.game.add.tilemap('level1');
         this.game.world.setBounds(0, 0, mapTmx.widthInPixels, mapTmx.heightInPixels);
 
         this.map = this.game.add.group()
-        mapTmx.createFromObjects('Object Layer 1', 1, 'box', 0, true, false, this.map, Block);
+        this.holeMap = this.game.add.group()
         
+        mapTmx.createFromObjects('Object Layer 1', 1, 'box', 0, true, false, this.map, Block);
+        mapTmx.createFromObjects('Object Layer 1', 2, 'hole', 0, true, false, this.holeMap);     
+        
+        this.holeMap.callAll('animations.add', 'animations', 'spin', [0, 1, 2, 3, 4, 5], 5, true);
+        this.holeMap.callAll('animations.play', 'animations', 'spin');
+          
+    
     }
 
 
