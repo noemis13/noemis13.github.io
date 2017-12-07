@@ -30,7 +30,7 @@ class GameState extends Phaser.State {
         fullScreenButton.onDown.add(this.toggleFullScreen, this)    
 
         // full screen touch button
-        let fullScreenIcon = this.game.add.sprite(100, 100, 
+        let fullScreenIcon = this.game.add.sprite(this.game.width*3/9, 100, 
             'fullscreen-button')
         fullScreenIcon.anchor.setTo(1, 1)
         fullScreenIcon.scale.setTo(0.75, 0.75)

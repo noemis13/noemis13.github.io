@@ -47,10 +47,10 @@ class PlayState extends GameState {
         this.game.camera.follow(this.player1)
     
         // Controlar player
-        window.addEventListener("deviceorientation",  this.handleOrientation, true);
+        window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
         
         // HUD
-        this.text1 = this.createHealthText(this.game.width*1/9, 50, 'V1')
+        this.text1 = this.createHealthText(this.game.width*3/9, 50, 'V1')
         
         // adicionar controles de full screen a tela
         super.initFullScreenButtons()
