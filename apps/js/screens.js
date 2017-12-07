@@ -4,7 +4,7 @@ class PlayState extends GameState {
     preload() {
         this.game.load.image('player', 'assets/ball.png')
         this.game.load.image('background', 'assets/fundoMadeira.jpg')
-        this.game.load.image('box', 'assets/box.png')
+        this.game.load.image('box', 'assets/box1.png')
         this.game.load.spritesheet('hole', 'assets/hole.png', 265, 253)
 
         this.game.load.image('fullscreen-button', 'assets/fullscreen-button.png')
