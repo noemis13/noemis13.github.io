@@ -3,7 +3,7 @@ class PlayState extends GameState {
 
     preload() {
         this.game.load.image('player', 'assets/ball.png')
-        this.game.load.image('background', 'assets/fundoMadeira.jpg')
+        this.game.load.image('background', 'assets/screen-bg.png')
         this.game.load.image('box', 'assets/box1.png')
         this.game.load.spritesheet('hole', 'assets/hole.png', 265, 253)
 
@@ -18,9 +18,6 @@ class PlayState extends GameState {
         this.game.physics.startSystem(Phaser.Physics.ARCADE)
         
         let background = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'background')
-       // background.scale.x = this.game.width/background.width
-       // background.scale.y = this.game.height/background.height
-        //background.autoScroll(-30, 0)
         background.fixedToCamera = true
 
        //let background = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'background')
@@ -29,8 +26,7 @@ class PlayState extends GameState {
 
         // Mapa do jogo
         this.createMap()
-       // this.createMap_old()
-        
+         
         // players
         this.player1 = this.game.add.sprite(this.game.width/1.5, this.game.height-140, 'player')
         this.player1.anchor.setTo(0.5, 0.5)
@@ -50,7 +46,12 @@ class PlayState extends GameState {
         window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
         
         // HUD
-        this.text1 = this.createHealthText(this.game.width*3/9, 50, 'V1')
+        this.text1 = this.createHealthText(this.game.width*3/9, 70, 'V2')
+         
+        // Pontuação
+        this.score = 0
+        this.textPoints = this.createHealthText(this.game.width*3/9, 50, 'PONTOS: '+this.score)
+         
         
         // adicionar controles de full screen a tela
         super.initFullScreenButtons()
