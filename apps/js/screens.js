@@ -50,7 +50,7 @@ class PlayState extends GameState {
         window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
         
         // HUD
-        this.text1 = this.createHealthText(this.game.width*5/9, 40, 'V3')
+        this.text1 = this.createHealthText(this.game.width*5/9, 40, 'V4')
          
         // Pontuação
         this.textLevels = this.createHealthText(this.game.width*2/9, 40, 'LEVEL:1/3 ')
