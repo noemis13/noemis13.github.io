@@ -50,11 +50,10 @@ class PlayState extends GameState {
         window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
         
         // HUD
-        this.text1 = this.createHealthText(this.game.width*5/9, 40, 'V2')
+        this.text1 = this.createHealthText(this.game.width*5/9, 40, 'V3')
          
         // Pontuação
-        this.score = 0
-        this.textPoints = this.createHealthText(this.game.width*2/9, 40, 'PONTOS: '+this.score)
+        this.textLevels = this.createHealthText(this.game.width*2/9, 40, 'LEVEL:1/3 ')
          
         // Tempo
         this.time = 0
@@ -67,6 +66,7 @@ class PlayState extends GameState {
         
     }
 
+    //Level1
     createMap(){
         let mapTmx = this.game.add.tilemap('level1');
         this.game.world.setBounds(0, 0, mapTmx.widthInPixels, mapTmx.heightInPixels);
@@ -78,11 +78,14 @@ class PlayState extends GameState {
         mapTmx.createFromObjects('Object Layer 1', 2, 'hole', 0, true, false, this.holeMap);     
         
         this.holeMap.callAll('animations.add', 'animations', 'spin', [0, 1, 2, 3, 4, 5], 5, true);
-        this.holeMap.callAll('animations.play', 'animations', 'spin');
-          
-    
+        this.holeMap.callAll('animations.play', 'animations', 'spin');    
     }
 
+    //Level 2
+    createMap2(){
+        textLevels.text = 'LEVEL: 2/3'
+           
+    }
 
     handleOrientation(e) {
         var y = e.beta;
@@ -102,6 +105,7 @@ class PlayState extends GameState {
     update() { 
         // Colisão
         this.physics.arcade.collide(this.player1, this.map, this.boxCollision, null, this);
+        this.physics.arcade.collide(this.player1, this.holeMap, this.createMap2, null, this);
         
     }
 
@@ -117,6 +121,7 @@ class PlayState extends GameState {
         
     }
 
+    
     render() {
        this.game.debug.body(this.player1)
     
