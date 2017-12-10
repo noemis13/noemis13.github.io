@@ -19,11 +19,11 @@ class StartGame extends Phaser.State {
         let background = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'background')
     
         //Dados
-        var txtName = this.game.add.text(this.game.world.centerX,200,'BALL HIT',{font:'50px Arial Black',fill:'#4169E1'});
+        var txtName = this.game.add.text(this.game.world.centerX,200,'BALL HIT',{font:'50px Arial Black',fill:'#696969'});
         txtName.anchor.set(0.5);
-        txtName.stroke = "#F0F8FF";
+        txtName.stroke = "#FFF5EE";
         txtName.strokeThickness = 16;
-        txtName.setShadow(2, 2, "#333333", 2, true, false);
+        txtName.setShadow(2, 2, "#DA70D6", 2, true, false);
     
         this.startButton = this.add.button(this.game.width*0.5, 300, 'start', this.startGame, this, 2, 0, 1);
         this.startButton.anchor.set(0.5,0);
