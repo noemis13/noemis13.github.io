@@ -10,14 +10,13 @@ class Game extends Phaser.Game {
 
         // adiciona estados ao jogo
         this.state.add('Play', PlayState, false)
-        //this.state.add('Title', TitleState, false)
-        this.state.start('Play')
+        this.state.add('StartGame', StartGame, false)
+        
+        this.state.start('StartGame')
+
         GAME = this
     }
 
-    hello() {
-        window.alert('hello')
-    }
 }
 
 // CLASSE GENERICA DE TELAS //////////////////////////////////////////////////////
