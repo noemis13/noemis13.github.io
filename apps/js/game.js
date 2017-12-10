@@ -26,9 +26,9 @@ class GameState extends Phaser.State {
     initFullScreenButtons() {
         this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         
-        //let fullScreenButton = this.input.keyboard.addKey(Phaser.Keyboard.ONE);
-        //fullScreenButton.onDown.add(this.toggleFullScreen, this)    
-        this.toggleFullScreen()
+        let fullScreenButton = this.input.keyboard.addKey(Phaser.Keyboard.ONE);
+        fullScreenButton.onDown.add(this.toggleFullScreen, this)    
+
         // full screen touch button
         /*let fullScreenIcon = this.game.add.sprite(this.game.width*3/9, 100, 
             'fullscreen-button')
