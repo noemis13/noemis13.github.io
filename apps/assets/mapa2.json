@@ -41,30 +41,6 @@
                 }, 
                 {
                  "gid":1,
-                 "height":1952,
-                 "id":39,
-                 "name":"",
-                 "rotation":-90,
-                 "type":"",
-                 "visible":true,
-                 "width":102,
-                 "x":2046,
-                 "y":96
-                }, 
-                {
-                 "gid":1,
-                 "height":294,
-                 "id":41,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":352,
-                 "y":390
-                }, 
-                {
-                 "gid":1,
                  "height":294,
                  "id":42,
                  "name":"",
