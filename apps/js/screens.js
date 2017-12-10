@@ -50,13 +50,17 @@ class PlayState extends GameState {
         window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
         
         // HUD
-        this.text1 = this.createHealthText(this.game.width*4/9, 40, 'V2')
+        this.text1 = this.createHealthText(this.game.width*5/9, 40, 'V2')
          
         // Pontuação
         this.score = 0
         this.textPoints = this.createHealthText(this.game.width*2/9, 40, 'PONTOS: '+this.score)
          
-        
+        // Tempo
+        this.time = 0
+        this.textTime = this.createHealthText(this.game.width*4/9, 40, 'TEMPO: '+this.time)
+        this.game.time.events.loop(1000, this.updateTime, this);
+
         // adicionar controles de full screen a tela
         super.initFullScreenButtons()
     
@@ -107,15 +111,15 @@ class PlayState extends GameState {
         }
     }
 
-    updateHud() {
-        this.text1.text = 'PLAYER A: ' + this.player1.health
+    updateTime(){
+        this.time = this.time+1
+        this.textTime.text = 'TEMPO: '+this.time 
+        
     }
 
     render() {
-    //    game.debug.body(npc)
-        this.game.debug.body(this.player1)
-    //    game.debug.body(player2)
-
+       this.game.debug.body(this.player1)
+    
     }
 }
 
