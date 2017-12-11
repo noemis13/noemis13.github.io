@@ -22,8 +22,8 @@ class Hole extends Phaser.Sprite {
         this.tag = 'hole'
         this.autoCull = true
        
-        var anime = this.animations.add('spin', [0, 1, 2, 3, 4, 5], 5, true) //criar a animação com frames para estados dos sprites (0 a n)
-        this.animations.play('spin')
+        //var anime = this.animations.add('spin', [0, 1, 2, 3, 4, 5], 5, true) //criar a animação com frames para estados dos sprites (0 a n)
+        //this.animations.play('spin')
         
         
     }

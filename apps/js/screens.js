@@ -2,11 +2,12 @@
 class PlayState extends GameState {
 
     preload() {
-        this.game.load.image('player', 'assets/ball.png')
+        this.game.load.image('player', 'assets/ball2.png')
         this.game.load.image('background', 'assets/screen-bg.png')
         this.game.load.image('panel', 'assets/panel.png')
         this.game.load.image('box', 'assets/element-w.png')
-        this.game.load.spritesheet('hole', 'assets/hole.png', 265, 253)
+        this.game.load.image('hole', 'assets/hole.png')
+        //this.game.load.spritesheet('hole', 'assets/hole.png', 265, 253)
 
         this.game.load.image('fullscreen-button', 'assets/fullscreen-button.png')
 
@@ -35,7 +36,7 @@ class PlayState extends GameState {
         // players
         this.player1 = this.game.add.sprite(this.game.width/5, this.game.height/4, 'player')
         this.player1.anchor.setTo(0.5, 0.5)
-        this.player1.scale.setTo(0.015, 0.015)
+        //this.player1.scale.setTo(0.01, 0.01)
         this.game.physics.enable(this.player1, Phaser.Physics.ARCADE)
         this.player1.body.setCircle(this.width/2);
 
@@ -65,16 +66,16 @@ class PlayState extends GameState {
 
     createHud(){
         // HUD
-        this.textVersion = this.createHealthText(this.game.width*5/9, 40, 'N5')
+        this.textVersion = this.createHealthText(this.game.width*7/9, 25, 'N4')
         this.textVersion.fixedToCamera = true
         
        // Pontuação
-       this.textLevels = this.createHealthText(this.game.width*2/9, 40, 'LEVEL:1/3 ')
+       this.textLevels = this.createHealthText(this.game.width*2/9, 25, 'LEVEL:1/3 ')
        this.textLevels.fixedToCamera = true
         
        // Tempo
        this.time = 0
-       this.textTime = this.createHealthText(this.game.width*4/9, 40, 'TEMPO: '+this.time)
+       this.textTime = this.createHealthText(this.game.width*5/9, 25, 'TEMPO: '+this.time)
        this.textTime.fixedToCamera = true
        this.game.time.events.loop(1000, this.updateTime, this);
     }
@@ -111,9 +112,6 @@ class PlayState extends GameState {
         // Mapa level 2
         let mapTmx = this.game.add.tilemap('level2');
         this.game.world.setBounds(0, 0, mapTmx.widthInPixels, mapTmx.heightInPixels);
-
-        this.map = this.game.add.group()
-        this.holeMap = this.game.add.group()
         
         mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
         mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
@@ -132,6 +130,7 @@ class PlayState extends GameState {
         let text = this.game.add.text(x, y, string, style)
         text.setShadow(3, 3, 'rgba(0, 0, 0, 0.5)', 2)
         text.anchor.setTo(0.5, 0.5)
+        //text.scale.setTo(0.8, 0.8)
         return text
     }
 
