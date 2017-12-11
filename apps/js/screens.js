@@ -12,6 +12,8 @@ class PlayState extends GameState {
 
         this.game.load.tilemap('level1', 'assets/map1.json', null, Phaser.Tilemap.TILED_JSON)
         this.game.load.tilemap('level2', 'assets/map2.json', null, Phaser.Tilemap.TILED_JSON)
+        this.game.load.tilemap('level3', 'assets/map3.json', null, Phaser.Tilemap.TILED_JSON)
+        
     }
 
     create() {
@@ -62,7 +64,7 @@ class PlayState extends GameState {
 
     createHud(){
         // HUD
-        this.textVersion = this.createHealthText(this.game.width*7/9, 25, 'N6')
+        this.textVersion = this.createHealthText(this.game.width*7/9, 25, 'N7')
         this.textVersion.fixedToCamera = true
         
        // Pontuação
@@ -117,7 +119,36 @@ class PlayState extends GameState {
         mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
         
     }
-   
+    
+    
+    createMap3(){
+        this.totalTimer += this.time;
+		this.time = 0;
+		this.numberOfLevel++;
+		this.textTime.setText("Tempo: "+this.timer);
+		//this.totalTimeText.setText("Total time: "+this.totalTimer);
+		this.textLevels.setText("Level:2/3 ");
+		this.player1.body.x = this.game.width/2;
+		this.player1.body.y = this.game.height-40;
+		this.player1.body.velocity.x = 0;
+        this.player1.body.velocity.y = 0;
+        
+        this.map.destroy()
+        this.holeMap.destroy()
+        
+        
+        // Mapa level 3
+        let mapTmx = this.game.add.tilemap('level3');
+        this.game.world.setBounds(0, 0, mapTmx.widthInPixels, mapTmx.heightInPixels);
+        
+        this.map = this.game.add.group()
+        this.holeMap = this.game.add.group()
+        
+        mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
+        mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
+        
+    }
+
     handleOrientation(e) {
         var y = e.beta;
         var x = e.gamma;
@@ -173,7 +204,10 @@ class PlayState extends GameState {
         alert('Parabéns, fase completa!! !\nTempo total de jogo: '+this.time+' segundos!');
         if(this.numberOfLevel == 1){
             this.createMap2()
-	     }
+        
+        } else if(this.numberOfLevel == 2){
+            this.createMap3()
+        }
 	
     }
 
