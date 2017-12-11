@@ -56,7 +56,7 @@ class PlayState extends GameState {
 
     createHud(){
         // HUD
-        this.textVersion = this.createHealthText(this.game.width*5/9, 40, 'N7')
+        this.textVersion = this.createHealthText(this.game.width*5/9, 40, 'N8')
         this.textVersion.fixedToCamera = true
         
        // Pontuação
@@ -81,6 +81,7 @@ class PlayState extends GameState {
         mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
         mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
         
+        this.numberOfLevel = 1;
     }
    
     handleOrientation(e) {
@@ -100,8 +101,8 @@ class PlayState extends GameState {
 
     update() { 
         // Colisão
+        this.physics.arcade.collide(this.player1, this.holeMap, this.boxCollision, null, this);
         this.physics.arcade.collide(this.player1, this.map, this.boxCollision, null, this);
-        //this.physics.arcade.collide(this.player1, this.holeMap, this.boxCollision, null, this);
         this.physics.arcade.collide(this.player1, this.holeMap, this.finishLevel, null, this);
         
     }
@@ -120,10 +121,11 @@ class PlayState extends GameState {
     finishLevel(){
         //if(this.level >= this.maxLevels) {
 		//	this.totalTimer += this.timer;
-			alert('Congratulations, game completed!\nTotal time of play: '+this.time+' seconds!');
+		//alert('Parabéns, fase completa!! !\nTempo total de jogo: '+this.time+' segundos!');
 		//	this.game.state.start('MainMenu');
-	/*	}
-		else {
+    	}
+        
+	//	else {
 			alert('Congratulations, level '+this.level+' completed!');
 			this.totalTimer += this.timer;
 			this.timer = 0;
@@ -136,14 +138,13 @@ class PlayState extends GameState {
 			this.ball.body.velocity.x = 0;
 			this.ball.body.velocity.y = 0;
 			this.showLevel();
-		}*/
+	//	}*/
 
     }
 
 
     render() {
        this.game.debug.body(this.player1)
-       this.game.debug.body(this.map)
        
     }
 }
