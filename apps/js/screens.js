@@ -48,6 +48,15 @@ class PlayState extends GameState {
         // Controlar player
         window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
 
+        // Controlar no PC
+        this.keys1 = {
+            upKey: this.game.input.keyboard.addKey(Phaser.Keyboard.UP),
+            downKey: this.game.input.keyboard.addKey(Phaser.Keyboard.DOWN),
+            leftKey: this.game.input.keyboard.addKey(Phaser.Keyboard.LEFT),
+            rightKey: this.game.input.keyboard.addKey(Phaser.Keyboard.RIGHT)
+        }    
+
+
         // adicionar controles de full screen a tela
         super.initFullScreenButtons()
         
@@ -56,7 +65,7 @@ class PlayState extends GameState {
 
     createHud(){
         // HUD
-        this.textVersion = this.createHealthText(this.game.width*5/9, 40, 'N3')
+        this.textVersion = this.createHealthText(this.game.width*5/9, 40, 'N4')
         this.textVersion.fixedToCamera = true
         
        // Pontuação
@@ -97,8 +106,8 @@ class PlayState extends GameState {
         this.player1.body.velocity.y = 0;
         
         // Mapa level 2
-        let mapTmx = this.game.add.tilemap('level1');
-        this.game.world.setBounds(0, 0, mapTmx.widthInPixels, mapTmx.heightInPixels);
+        //let mapTmx = this.game.add.tilemap('level1');
+        //this.game.world.setBounds(0, 0, mapTmx.widthInPixels, mapTmx.heightInPixels);
 
     }
    
@@ -118,6 +127,22 @@ class PlayState extends GameState {
     }
 
     update() { 
+        //Controle
+
+        if (this.keys1.leftKey.isDown) {
+            this.player1.body.velocity.x -= this.movementForce;
+        } else
+        if (this.keys1.rightKey.isDown) {
+            this.player1.body.velocity.x += this.movementForce;
+        }
+
+        if (this.keys1.upKey.isDown) {
+            this.player1.body.velocity.y -= this.movementForce;
+        } else 
+        if (this.keys1.downKey.isDown) {
+            this.player1.body.velocity.y += this.movementForce;
+        }
+
         // Colisão
         this.physics.arcade.collide(this.player1, this.map, this.boxCollision, null, this);
         this.physics.arcade.collide(this.player1, this.holeMap, this.finishLevel, null, this);
