@@ -35,7 +35,7 @@ class PlayState extends GameState {
         // players
         this.player1 = this.game.add.sprite(this.game.width/5, this.game.height/4, 'player')
         this.player1.anchor.setTo(0.5, 0.5)
-        this.player1.scale.setTo(0.01, 0.01)
+        this.player1.scale.setTo(0.015, 0.015)
         this.game.physics.enable(this.player1, Phaser.Physics.ARCADE)
         this.player1.body.setCircle(this.width/2);
 
@@ -56,7 +56,7 @@ class PlayState extends GameState {
 
     createHud(){
         // HUD
-        this.textVersion = this.createHealthText(this.game.width*5/9, 40, 'V9')
+        this.textVersion = this.createHealthText(this.game.width*5/9, 40, 'N1')
         this.textVersion.fixedToCamera = true
         
        // Pontuação
@@ -85,17 +85,7 @@ class PlayState extends GameState {
         this.holeMap.callAll('animations.play', 'animations', 'spin');    
     }
 
-    //Level 2
-    createMap2(){
-        this.textLevels.destroy()
-        //textTime.destroy()
-        this.player1.destroy()
-        this.holeMap.destroy()
-        
-        // Update Hud
-        textLevels.text = 'LEVEL: 2/3'           
-    }
-
+   
     handleOrientation(e) {
         var y = e.beta;
         var x = e.gamma;
@@ -113,9 +103,14 @@ class PlayState extends GameState {
 
     update() { 
         // Colisão
+<<<<<<< HEAD
         //this.game.physics.arcade.collide(this.player1, this.holeMap, this.createMap2, null, this)
         this.physics.arcade.collide(this.player1, this.map, this.boxCollision, null, this);
         this.physics.arcade.collide(this.player1, this.holeMap, this.createMap2, null, this);
+=======
+        this.physics.arcade.collide(this.player1, this.map, this.boxCollision, null, this);
+        this.game.physics.arcade.collide(this.player1, this.holeMap, this.boxCollision, null, this)
+>>>>>>> 6616568bc0b7e9eadb6e7cbb79a25deff15f33be
         
     }
 
