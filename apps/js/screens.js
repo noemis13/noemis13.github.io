@@ -7,17 +7,16 @@ class PlayState extends GameState {
         this.game.load.image('panel', 'assets/panel.png')
         this.game.load.image('box', 'assets/element-w.png')
         this.game.load.image('hole', 'assets/hole.png')
-        //this.game.load.spritesheet('hole', 'assets/hole.png', 265, 253)
-
+       
         this.game.load.image('fullscreen-button', 'assets/fullscreen-button.png')
 
         this.game.load.tilemap('level1', 'assets/map1.json', null, Phaser.Tilemap.TILED_JSON)
-        this.game.load.tilemap('level2', 'assets/mapa2.json', null, Phaser.Tilemap.TILED_JSON)
+        this.game.load.tilemap('level2', 'assets/map2.json', null, Phaser.Tilemap.TILED_JSON)
     }
 
     create() {
         this.game.renderer.roundPixels = true
-        //game.renderer.clearBeforeRender = false
+        this.game.renderer.clearBeforeRender = false
         this.game.physics.startSystem(Phaser.Physics.ARCADE)
         
         //Painel
@@ -28,15 +27,12 @@ class PlayState extends GameState {
         let background = this.game.add.tileSprite(0, this.game.height/12, this.game.width, this.game.height, 'background')
         background.fixedToCamera = true
 
-        
-
         // Mapa do jogo
         this.createMap()
          
         // players
-        this.player1 = this.game.add.sprite(this.game.width/5, this.game.height/4, 'player')
+        this.player1 = this.game.add.sprite(this.game.width/2, this.game.height-40, 'player')
         this.player1.anchor.setTo(0.5, 0.5)
-        //this.player1.scale.setTo(0.01, 0.01)
         this.game.physics.enable(this.player1, Phaser.Physics.ARCADE)
         this.player1.body.setCircle(this.width/2);
 
@@ -101,8 +97,8 @@ class PlayState extends GameState {
 		this.textTime.setText("Tempo: "+this.timer);
 		//this.totalTimeText.setText("Total time: "+this.totalTimer);
 		this.textLevels.setText("Level:2/3 ");
-		this.player1.body.x = this.game.width/5;
-		this.player1.body.y = this.game.width/4;
+		this.player1.body.x = this.game.width/2;
+		this.player1.body.y = this.game.width-40;
 		this.player1.body.velocity.x = 0;
         this.player1.body.velocity.y = 0;
         

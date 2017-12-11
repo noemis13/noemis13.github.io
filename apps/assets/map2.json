@@ -16,9 +16,45 @@
          "name":"Camada de Objetos 1",
          "objects":[
                 {
-                 "gid":1,
+                 "gid":2,
                  "height":30,
                  "id":1,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":96.2148,
+                 "x":64,
+                 "y":390
+                }, 
+                {
+                 "gid":2,
+                 "height":30,
+                 "id":2,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":96.2148,
+                 "x":160,
+                 "y":390
+                }, 
+                {
+                 "gid":2,
+                 "height":30,
+                 "id":3,
+                 "name":"",
+                 "rotation":90,
+                 "type":"",
+                 "visible":true,
+                 "width":96.2148,
+                 "x":256,
+                 "y":360
+                }, 
+                {
+                 "gid":1,
+                 "height":30,
+                 "id":4,
                  "name":"",
                  "rotation":0,
                  "type":"",
@@ -30,26 +66,38 @@
                 {
                  "gid":2,
                  "height":30,
-                 "id":3,
+                 "id":5,
                  "name":"",
-                 "rotation":0,
+                 "rotation":90,
                  "type":"",
                  "visible":true,
-                 "width":96.2148277875073,
-                 "x":32,
-                 "y":240
+                 "width":96.2148,
+                 "x":64,
+                 "y":180
                 }, 
                 {
                  "gid":2,
                  "height":30,
-                 "id":4,
+                 "id":6,
                  "name":"",
-                 "rotation":0,
+                 "rotation":90,
                  "type":"",
                  "visible":true,
                  "width":96.2148,
-                 "x":192,
-                 "y":360
+                 "x":64,
+                 "y":270
+                }, 
+                {
+                 "gid":2,
+                 "height":30,
+                 "id":8,
+                 "name":"",
+                 "rotation":180,
+                 "type":"",
+                 "visible":true,
+                 "width":96.2148,
+                 "x":224,
+                 "y":120
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -57,7 +105,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":5,
+ "nextobjectid":10,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.0.3",
