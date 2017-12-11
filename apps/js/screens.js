@@ -56,7 +56,7 @@ class PlayState extends GameState {
 
     createHud(){
         // HUD
-        this.textVersion = this.createHealthText(this.game.width*5/9, 40, 'N9')
+        this.textVersion = this.createHealthText(this.game.width*5/9, 40, 'N1')
         this.textVersion.fixedToCamera = true
         
        // Pontuação
