@@ -5,7 +5,7 @@ class PlayState extends GameState {
         this.game.load.image('player', 'assets/ball.png')
         this.game.load.image('background', 'assets/screen-bg.png')
         this.game.load.image('panel', 'assets/panel.png')
-        this.game.load.image('box', 'assets/box1.png')
+        this.game.load.image('box', 'assets/loading-bar.png')
         this.game.load.spritesheet('hole', 'assets/hole.png', 265, 253)
 
         this.game.load.image('fullscreen-button', 'assets/fullscreen-button.png')
@@ -41,7 +41,7 @@ class PlayState extends GameState {
 
         this.player1.body.collideWorldBounds = true
         this.player1.body.bounce.set(0.3, 0.3)
-        this.player1.body.maxVelocity = 50
+        //this.player1.body.maxVelocity = 50
         this.player1.body.drag.set(300)
         
         
@@ -51,7 +51,7 @@ class PlayState extends GameState {
         window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
         
         // HUD
-        this.text1 = this.createHealthText(this.game.width*5/9, 40, 'V6')
+        this.text1 = this.createHealthText(this.game.width*5/9, 40, 'V7')
          
         // Pontuação
         this.textLevels = this.createHealthText(this.game.width*2/9, 40, 'LEVEL:1/3 ')
