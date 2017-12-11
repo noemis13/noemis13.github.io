@@ -78,7 +78,7 @@ class PlayState extends GameState {
 
     
     createMap(){
-        let mapTmx = this.game.add.tilemap('level2');
+        let mapTmx = this.game.add.tilemap('level1');
         this.game.world.setBounds(0, 0, mapTmx.widthInPixels, mapTmx.heightInPixels);
 
         this.map = this.game.add.group()
