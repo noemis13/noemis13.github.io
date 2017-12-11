@@ -1,3 +1,13 @@
+(function(name,data){
+ if(typeof onTileMapLoaded === 'undefined') {
+  if(typeof TileMaps === 'undefined') TileMaps = {};
+  TileMaps[name] = data;
+ } else {
+  onTileMapLoaded(name,data);
+ }
+ if(typeof module === 'object' && module && module.exports) {
+  module.exports = data;
+ }})("map1",
 { "height":16,
  "layers":[
         {
@@ -16,33 +26,9 @@
          "name":"Camada de Objetos 1",
          "objects":[
                 {
-                 "gid":2,
-                 "height":30,
-                 "id":1,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":96.2148,
-                 "x":64,
-                 "y":390
-                }, 
-                {
-                 "gid":2,
-                 "height":30,
-                 "id":2,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":96.2148,
-                 "x":160,
-                 "y":390
-                }, 
-                {
                  "gid":1,
                  "height":30,
-                 "id":4,
+                 "id":1,
                  "name":"",
                  "rotation":0,
                  "type":"",
@@ -54,38 +40,26 @@
                 {
                  "gid":2,
                  "height":30,
-                 "id":5,
+                 "id":3,
                  "name":"",
-                 "rotation":90,
+                 "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":96.2148,
-                 "x":64,
-                 "y":180
+                 "width":96.2148277875073,
+                 "x":32,
+                 "y":240
                 }, 
                 {
                  "gid":2,
                  "height":30,
-                 "id":6,
+                 "id":4,
                  "name":"",
-                 "rotation":90,
+                 "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":96.2148,
-                 "x":64,
-                 "y":270
-                }, 
-                {
-                 "gid":2,
-                 "height":30,
-                 "id":8,
-                 "name":"",
-                 "rotation":180,
-                 "type":"",
-                 "visible":true,
-                 "width":96.2148,
-                 "x":224,
-                 "y":120
+                 "x":192,
+                 "y":360
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -93,7 +67,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":14,
+ "nextobjectid":5,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.0.3",
@@ -116,4 +90,4 @@
  "type":"map",
  "version":1,
  "width":10
-}
+});

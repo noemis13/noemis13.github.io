@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="10" height="16" tilewidth="32" tileheight="30" nextobjectid="1">
+<map version="1.0" tiledversion="1.0.3" orientation="orthogonal" renderorder="right-down" width="10" height="16" tilewidth="32" tileheight="30" nextobjectid="5">
+ <tileset firstgid="1" name="map-objects" tilewidth="32" tileheight="30" tilecount="16" columns="8">
+  <image source="map-objects.png" width="256" height="64"/>
+ </tileset>
  <layer name="Camada de Tiles 1" width="10" height="16">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,
@@ -20,4 +23,9 @@
 0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup name="Camada de Objetos 1">
+  <object id="1" gid="1" x="160" y="90" width="32" height="30"/>
+  <object id="3" gid="2" x="32" y="240" width="96.2148" height="30"/>
+  <object id="4" gid="2" x="192" y="360" width="96.2148" height="30"/>
+ </objectgroup>
 </map>

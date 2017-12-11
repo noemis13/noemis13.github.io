@@ -16,7 +16,7 @@ class PlayState extends GameState {
 
     create() {
         this.game.renderer.roundPixels = true
-        this.game.renderer.clearBeforeRender = false
+        //this.game.renderer.clearBeforeRender = false
         this.game.physics.startSystem(Phaser.Physics.ARCADE)
         
         //Painel
@@ -78,7 +78,7 @@ class PlayState extends GameState {
 
     
     createMap(){
-        let mapTmx = this.game.add.tilemap('level1');
+        let mapTmx = this.game.add.tilemap('level2');
         this.game.world.setBounds(0, 0, mapTmx.widthInPixels, mapTmx.heightInPixels);
 
         this.map = this.game.add.group()
@@ -98,16 +98,20 @@ class PlayState extends GameState {
 		//this.totalTimeText.setText("Total time: "+this.totalTimer);
 		this.textLevels.setText("Level:2/3 ");
 		this.player1.body.x = this.game.width/2;
-		this.player1.body.y = this.game.width-40;
+		this.player1.body.y = this.game.height-40;
 		this.player1.body.velocity.x = 0;
         this.player1.body.velocity.y = 0;
         
         this.map.destroy()
         this.holeMap.destroy()
-
+        
+        
         // Mapa level 2
         let mapTmx = this.game.add.tilemap('level2');
         this.game.world.setBounds(0, 0, mapTmx.widthInPixels, mapTmx.heightInPixels);
+        
+        this.map = this.game.add.group()
+        this.holeMap = this.game.add.group()
         
         mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
         mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
