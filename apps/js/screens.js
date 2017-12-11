@@ -43,28 +43,31 @@ class PlayState extends GameState {
         this.player1.body.bounce.set(0.3, 0.3)
         //this.player1.body.maxVelocity = 50
         this.player1.body.drag.set(300)
-        
-        
         this.game.camera.follow(this.player1)
     
         // Controlar player
         window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
-        
-        // HUD
-        this.text1 = this.createHealthText(this.game.width*5/9, 40, 'V9')
-         
-        // Pontuação
-        this.textLevels = this.createHealthText(this.game.width*2/9, 40, 'LEVEL:1/3 ')
-         
-        // Tempo
-        this.time = 0
-        this.textTime = this.createHealthText(this.game.width*4/9, 40, 'TEMPO: '+this.time)
-        this.game.time.events.loop(1000, this.updateTime, this);
 
         // adicionar controles de full screen a tela
         super.initFullScreenButtons()
-    
         
+        this.createHud()
+    }
+
+    createHud(){
+        // HUD
+        this.textVersion = this.createHealthText(this.game.width*5/9, 40, 'V9')
+        this.textVersion.fixedToCamera = true
+        
+       // Pontuação
+       this.textLevels = this.createHealthText(this.game.width*2/9, 40, 'LEVEL:1/3 ')
+       this.textLevels.fixedToCamera = true
+        
+       // Tempo
+       this.time = 0
+       this.textTime = this.createHealthText(this.game.width*4/9, 40, 'TEMPO: '+this.time)
+       this.textTime.fixedToCamera = true
+       this.game.time.events.loop(1000, this.updateTime, this);
     }
 
     //Level1
@@ -89,11 +92,8 @@ class PlayState extends GameState {
         this.player1.destroy()
         this.holeMap.destroy()
         
-        
         // Update Hud
-        textLevels.text = 'LEVEL: 2/3'
-
-           
+        textLevels.text = 'LEVEL: 2/3'           
     }
 
     handleOrientation(e) {
@@ -113,8 +113,9 @@ class PlayState extends GameState {
 
     update() { 
         // Colisão
+        this.game.physics.arcade.collide(this.player1, this.holeMap, this.createMap2, null, this)
         this.physics.arcade.collide(this.player1, this.map, this.boxCollision, null, this);
-        this.physics.arcade.collide(this.player1, this.holeMap, this.createMap2, null, this);
+        //this.physics.arcade.collide(this.player1, this.holeMap, this.createMap2, null, this);
         
     }
 
@@ -127,7 +128,7 @@ class PlayState extends GameState {
     updateTime(){
         this.time = this.time+1
         this.textTime.text = 'TEMPO: '+this.time 
-        
+        this.textTime.fixedToCamera = true
     }
 
     
