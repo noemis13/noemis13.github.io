@@ -156,7 +156,7 @@ class PlayState extends GameState {
         
         alert('Parabéns, fase completa!! !\nTempo total de jogo: '+this.time+' segundos!');
         if(numberOfLevel == 1){
-            
+            this.createMap2()
 	     }
 	
     }
