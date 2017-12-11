@@ -10,7 +10,7 @@ class PlayState extends GameState {
 
         this.game.load.image('fullscreen-button', 'assets/fullscreen-button.png')
 
-        this.game.load.tilemap('level1', 'assets/mapa1.json', null, Phaser.Tilemap.TILED_JSON)
+        this.game.load.tilemap('level1', 'assets/map1.json', null, Phaser.Tilemap.TILED_JSON)
         this.game.load.tilemap('level2', 'assets/mapa2.json', null, Phaser.Tilemap.TILED_JSON)
     }
 
@@ -65,7 +65,7 @@ class PlayState extends GameState {
 
     createHud(){
         // HUD
-        this.textVersion = this.createHealthText(this.game.width*5/9, 40, 'N4')
+        this.textVersion = this.createHealthText(this.game.width*5/9, 40, 'N5')
         this.textVersion.fixedToCamera = true
         
        // Pontuação
