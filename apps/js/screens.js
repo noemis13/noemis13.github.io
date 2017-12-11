@@ -10,8 +10,8 @@ class PlayState extends GameState {
 
         this.game.load.image('fullscreen-button', 'assets/fullscreen-button.png')
 
-        this.game.load.tilemap('level1', 'assets/mapa.json', null, Phaser.Tilemap.TILED_JSON)
-        this.game.load.tilemap('level2', 'assets/mapa2.json', null, Phaser.Tilemap.TILED_JSON)
+        this.game.load.tilemap('level1', 'assets/mapa1.json', null, Phaser.Tilemap.TILED_JSON)
+        //this.game.load.tilemap('level2', 'assets/mapa2.json', null, Phaser.Tilemap.TILED_JSON)
     }
 
     create() {
@@ -75,8 +75,8 @@ class PlayState extends GameState {
         this.map = this.game.add.group()
         this.holeMap = this.game.add.group()
         
-        mapTmx.createFromObjects('Object Layer 1', 9, 'box', 0, true, false, this.map, Block);
-        mapTmx.createFromObjects('Object Layer 1', 2, 'hole', 0, true, false, this.holeMap);     
+        mapTmx.createFromObjects('Camada de Objetos 1', 9, 'box', 0, true, false, this.map, Block);
+        mapTmx.createFromObjects('Camada de Objetos 1', 2, 'hole', 0, true, false, this.holeMap);     
         
         this.holeMap.callAll('animations.add', 'animations', 'spin', [0, 1, 2, 3, 4, 5], 5, true);
         this.holeMap.callAll('animations.play', 'animations', 'spin');    
@@ -93,19 +93,6 @@ class PlayState extends GameState {
         // Update Hud
         textLevels.text = 'LEVEL: 2/3'
 
-        //Map
-        let mapTmx = this.game.add.tilemap('level2');        
-        this.game.world.setBounds(0, 0, mapTmx.widthInPixels, mapTmx.heightInPixels);
-        
-        //this.map = this.game.add.group()
-        //this.holeMap = this.game.add.group()
-                
-        mapTmx.createFromObjects('Object Layer 1', 1, 'box', 0, true, false, this.map, Block);
-        mapTmx.createFromObjects('Object Layer 1', 2, 'hole', 0, true, false, this.holeMap);     
-                
-        this.holeMap.callAll('animations.add', 'animations', 'spin', [0, 1, 2, 3, 4, 5], 5, true);
-        this.holeMap.callAll('animations.play', 'animations', 'spin');
-        
            
     }
 
