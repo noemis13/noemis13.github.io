@@ -100,15 +100,24 @@ class PlayState extends GameState {
 		this.textTime.setText("Tempo: "+this.timer);
 		//this.totalTimeText.setText("Total time: "+this.totalTimer);
 		this.textLevels.setText("Level:2/3 ");
-		this.player1.body.x = this.ballStartPos.x;
-		this.player1.body.y = this.ballStartPos.y;
+		this.player1.body.x = this.game.width/5;
+		this.player1.body.y = this.game.width/4;
 		this.player1.body.velocity.x = 0;
         this.player1.body.velocity.y = 0;
         
-        // Mapa level 2
-        //let mapTmx = this.game.add.tilemap('level1');
-        //this.game.world.setBounds(0, 0, mapTmx.widthInPixels, mapTmx.heightInPixels);
+        this.map.destroy()
+        this.holeMap.destroy()
 
+        // Mapa level 2
+        let mapTmx = this.game.add.tilemap('level2');
+        this.game.world.setBounds(0, 0, mapTmx.widthInPixels, mapTmx.heightInPixels);
+
+        this.map = this.game.add.group()
+        this.holeMap = this.game.add.group()
+        
+        mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
+        mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
+        
     }
    
     handleOrientation(e) {
@@ -163,7 +172,7 @@ class PlayState extends GameState {
 
     finishLevel(){       
         alert('Parabéns, fase completa!! !\nTempo total de jogo: '+this.time+' segundos!');
-        if(numberOfLevel == 1){
+        if(this.numberOfLevel == 1){
             this.createMap2()
 	     }
 	
