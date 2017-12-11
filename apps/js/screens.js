@@ -130,23 +130,23 @@ class PlayState extends GameState {
         //Controle
 
         if (this.keys1.leftKey.isDown) {
-            this.player1.body.velocity.x -= this.movementForce;
+            this.player1.body.velocity.x -= 10;
         } else
         if (this.keys1.rightKey.isDown) {
-            this.player1.body.velocity.x += this.movementForce;
+            this.player1.body.velocity.x += 10;
         }
 
         if (this.keys1.upKey.isDown) {
-            this.player1.body.velocity.y -= this.movementForce;
+            this.player1.body.velocity.y -= 10;
         } else 
         if (this.keys1.downKey.isDown) {
-            this.player1.body.velocity.y += this.movementForce;
+            this.player1.body.velocity.y += 10;
         }
 
         // Colisão
         this.physics.arcade.collide(this.player1, this.map, this.boxCollision, null, this);
         this.physics.arcade.collide(this.player1, this.holeMap, this.finishLevel, null, this);
-        this.physics.arcade.collide(this.player1, this.holeMap, this.boxCollision, null, this);
+        //this.physics.arcade.collide(this.player1, this.holeMap, this.boxCollision, null, this);
         
     }
 
