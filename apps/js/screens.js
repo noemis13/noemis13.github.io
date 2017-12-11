@@ -82,28 +82,6 @@ class PlayState extends GameState {
         mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
         
     }
-
-    createMap2(){
-        this.map.destroy()
-        this.holeMap.destroy()
-        this.textTime.destroy()
-        this.textLevels.destroy()
-        this.textTime.destroy()
-
-        this.textLevels = 'LEVEL: 2/3 '
-        this.time = 0
-        this.textTime.text = 'TEMPO: '+this.time 
-        
-        
-
-        let mapTmx = this.game.add.tilemap('level2');
-        this.game.world.setBounds(0, 0, mapTmx.widthInPixels, mapTmx.heightInPixels);
-
-        mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
-        mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
-
-    }
-
    
     handleOrientation(e) {
         var y = e.beta;
@@ -124,7 +102,7 @@ class PlayState extends GameState {
         // Colisão
         this.physics.arcade.collide(this.player1, this.map, this.boxCollision, null, this);
         this.physics.arcade.collide(this.player1, this.holeMap, this.boxCollision, null, this);
-        this.physics.arcade.collide(this.player1, this.holeMap, this.createMap2, null, this);
+        this.physics.arcade.collide(this.player1, this.holeMap, this.finishLevel, null, this);
         
     }
 
@@ -139,7 +117,30 @@ class PlayState extends GameState {
         this.textTime.text = 'TEMPO: '+this.time 
     }
 
-    
+    finishLevel(){
+        //if(this.level >= this.maxLevels) {
+		//	this.totalTimer += this.timer;
+			alert('Congratulations, game completed!\nTotal time of play: '+this.time+' seconds!');
+		//	this.game.state.start('MainMenu');
+	/*	}
+		else {
+			alert('Congratulations, level '+this.level+' completed!');
+			this.totalTimer += this.timer;
+			this.timer = 0;
+			this.level++;
+			this.timerText.setText("Time: "+this.timer);
+			this.totalTimeText.setText("Total time: "+this.totalTimer);
+			this.levelText.setText("Level: "+this.level+" / "+this.maxLevels);
+			this.ball.body.x = this.ballStartPos.x;
+			this.ball.body.y = this.ballStartPos.y;
+			this.ball.body.velocity.x = 0;
+			this.ball.body.velocity.y = 0;
+			this.showLevel();
+		}*/
+
+    }
+
+
     render() {
        this.game.debug.body(this.player1)
        this.game.debug.body(this.map)
