@@ -56,7 +56,7 @@ class PlayState extends GameState {
 
     createHud(){
         // HUD
-        this.textVersion = this.createHealthText(this.game.width*5/9, 40, 'N2')
+        this.textVersion = this.createHealthText(this.game.width*5/9, 40, 'N3')
         this.textVersion.fixedToCamera = true
         
        // Pontuação
@@ -70,7 +70,7 @@ class PlayState extends GameState {
        this.game.time.events.loop(1000, this.updateTime, this);
     }
 
-    //Level1
+    
     createMap(){
         let mapTmx = this.game.add.tilemap('level1');
         this.game.world.setBounds(0, 0, mapTmx.widthInPixels, mapTmx.heightInPixels);
@@ -94,8 +94,12 @@ class PlayState extends GameState {
 		this.player1.body.x = this.ballStartPos.x;
 		this.player1.body.y = this.ballStartPos.y;
 		this.player1.body.velocity.x = 0;
-		this.player1.body.velocity.y = 0;
-			
+        this.player1.body.velocity.y = 0;
+        
+        // Mapa level 2
+        let mapTmx = this.game.add.tilemap('level1');
+        this.game.world.setBounds(0, 0, mapTmx.widthInPixels, mapTmx.heightInPixels);
+
     }
    
     handleOrientation(e) {
@@ -132,28 +136,7 @@ class PlayState extends GameState {
         this.textTime.text = 'TEMPO: '+this.time 
     }
 
-    finishLevel(){
-        //if(this.level >= this.maxLevels) {
-		//	this.totalTimer += this.timer;
-		//alert('Parabéns, fase completa!! !\nTempo total de jogo: '+this.time+' segundos!');
-		//	this.game.state.start('MainMenu');
-    /*	}
-        
-		else {
-			alert('Congratulations, level '+this.level+' completed!');
-			this.totalTimer += this.timer;
-			this.timer = 0;
-			this.level++;
-			this.timerText.setText("Time: "+this.timer);
-			this.totalTimeText.setText("Total time: "+this.totalTimer);
-			this.levelText.setText("Level: "+this.level+" / "+this.maxLevels);
-			this.ball.body.x = this.ballStartPos.x;
-			this.ball.body.y = this.ballStartPos.y;
-			this.ball.body.velocity.x = 0;
-			this.ball.body.velocity.y = 0;
-			this.showLevel();
-		}*/
-        
+    finishLevel(){       
         alert('Parabéns, fase completa!! !\nTempo total de jogo: '+this.time+' segundos!');
         if(numberOfLevel == 1){
             this.createMap2()
