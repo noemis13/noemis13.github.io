@@ -56,7 +56,7 @@ class PlayState extends GameState {
 
     createHud(){
         // HUD
-        this.textVersion = this.createHealthText(this.game.width*5/9, 40, 'V9')
+        this.textVersion = this.createHealthText(this.game.width*5/9, 40, 'N1')
         this.textVersion.fixedToCamera = true
         
        // Pontuação
@@ -85,17 +85,7 @@ class PlayState extends GameState {
         this.holeMap.callAll('animations.play', 'animations', 'spin');    
     }
 
-    //Level 2
-    createMap2(){
-        this.textLevels.destroy()
-        //textTime.destroy()
-        this.player1.destroy()
-        this.holeMap.destroy()
-        
-        // Update Hud
-        textLevels.text = 'LEVEL: 2/3'           
-    }
-
+   
     handleOrientation(e) {
         var y = e.beta;
         var x = e.gamma;
@@ -113,9 +103,8 @@ class PlayState extends GameState {
 
     update() { 
         // Colisão
-        this.game.physics.arcade.collide(this.player1, this.holeMap, this.createMap2, null, this)
         this.physics.arcade.collide(this.player1, this.map, this.boxCollision, null, this);
-        //this.physics.arcade.collide(this.player1, this.holeMap, this.createMap2, null, this);
+        this.game.physics.arcade.collide(this.player1, this.holeMap, this.boxCollision, null, this)
         
     }
 
