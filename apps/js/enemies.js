@@ -4,7 +4,7 @@ class Block extends Phaser.Sprite {
     constructor(game, x, y, asset) {
         super(game, x, y, asset)
         this.game.physics.arcade.enable(this)
-        //this.anchor.setTo(0.3, 0.3)
+        this.anchor.setTo(0.3, 0.3)
         this.body.syncBounds = true
         this.body.immovable = true
         this.tag = 'wood'
