@@ -56,7 +56,7 @@ class PlayState extends GameState {
 
     createHud(){
         // HUD
-        this.textVersion = this.createHealthText(this.game.width*5/9, 40, 'N3')
+        this.textVersion = this.createHealthText(this.game.width*5/9, 40, 'N4')
         this.textVersion.fixedToCamera = true
         
        // Pontuação
@@ -83,6 +83,12 @@ class PlayState extends GameState {
         
     }
 
+    createMap2(){
+        this.map.destroy()
+        this.holeMap.destroy()
+        this.textTime.destroy()
+    }
+
    
     handleOrientation(e) {
         var y = e.beta;
@@ -103,6 +109,7 @@ class PlayState extends GameState {
         // Colisão
         this.physics.arcade.collide(this.player1, this.map, this.boxCollision, null, this);
         this.physics.arcade.collide(this.player1, this.holeMap, this.boxCollision, null, this);
+        this.physics.arcade.collide(this.player1, this.holeMap, this.createMap2, null, this);
         
     }
 
