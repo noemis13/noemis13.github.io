@@ -87,7 +87,7 @@ class PlayState extends GameState {
     createMap2(){
         this.totalTimer += this.time;
 		this.time = 0;
-		this.level++;
+		this.numberOfLevel++;
 		this.textTime.setText("Tempo: "+this.timer);
 		//this.totalTimeText.setText("Total time: "+this.totalTimer);
 		this.textLevels.setText("Level:2/3 ");
