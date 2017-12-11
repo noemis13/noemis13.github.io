@@ -103,8 +103,14 @@ class PlayState extends GameState {
 
     update() { 
         // Colisão
+<<<<<<< HEAD
+        //this.game.physics.arcade.collide(this.player1, this.holeMap, this.createMap2, null, this)
+        this.physics.arcade.collide(this.player1, this.map, this.boxCollision, null, this);
+        this.physics.arcade.collide(this.player1, this.holeMap, this.createMap2, null, this);
+=======
         this.physics.arcade.collide(this.player1, this.map, this.boxCollision, null, this);
         this.game.physics.arcade.collide(this.player1, this.holeMap, this.boxCollision, null, this)
+>>>>>>> 6616568bc0b7e9eadb6e7cbb79a25deff15f33be
         
     }
 
@@ -117,7 +123,6 @@ class PlayState extends GameState {
     updateTime(){
         this.time = this.time+1
         this.textTime.text = 'TEMPO: '+this.time 
-        this.textTime.fixedToCamera = true
     }
 
     
