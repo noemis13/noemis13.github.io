@@ -11,7 +11,7 @@ class PlayState extends GameState {
         this.game.load.image('fullscreen-button', 'assets/fullscreen-button.png')
 
         this.game.load.tilemap('level1', 'assets/mapa1.json', null, Phaser.Tilemap.TILED_JSON)
-        //this.game.load.tilemap('level2', 'assets/mapa2.json', null, Phaser.Tilemap.TILED_JSON)
+        this.game.load.tilemap('level2', 'assets/mapa2.json', null, Phaser.Tilemap.TILED_JSON)
     }
 
     create() {
@@ -87,6 +87,21 @@ class PlayState extends GameState {
         this.map.destroy()
         this.holeMap.destroy()
         this.textTime.destroy()
+        this.textLevels.destroy()
+        this.textTime.destroy()
+
+        this.textLevels = 'LEVEL: 2/3 '
+        this.time = 0
+        this.textTime.text = 'TEMPO: '+this.time 
+        
+        
+
+        let mapTmx = this.game.add.tilemap('level2');
+        this.game.world.setBounds(0, 0, mapTmx.widthInPixels, mapTmx.heightInPixels);
+
+        mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
+        mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
+
     }
 
    

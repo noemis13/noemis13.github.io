@@ -14,14 +14,26 @@
         {
          "draworder":"topdown",
          "name":"Camada de Objetos 1",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":1,
+                 "height":76,
+                 "id":1,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":81.0666666666667,
+                 "x":602,
+                 "y":321
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
          "x":0,
          "y":0
         }],
- "nextobjectid":1,
+ "nextobjectid":2,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.0.3",
