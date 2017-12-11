@@ -51,7 +51,7 @@ class PlayState extends GameState {
         window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
         
         // HUD
-        this.text1 = this.createHealthText(this.game.width*5/9, 40, 'V8')
+        this.text1 = this.createHealthText(this.game.width*5/9, 40, 'V9')
          
         // Pontuação
         this.textLevels = this.createHealthText(this.game.width*2/9, 40, 'LEVEL:1/3 ')
@@ -75,8 +75,8 @@ class PlayState extends GameState {
         this.map = this.game.add.group()
         this.holeMap = this.game.add.group()
         
-        mapTmx.createFromObjects('Camada de Objetos 1', 9, 'box', 0, true, false, this.map, Block);
-        mapTmx.createFromObjects('Camada de Objetos 1', 2, 'hole', 0, true, false, this.holeMap);     
+        mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
+        mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap);     
         
         this.holeMap.callAll('animations.add', 'animations', 'spin', [0, 1, 2, 3, 4, 5], 5, true);
         this.holeMap.callAll('animations.play', 'animations', 'spin');    
