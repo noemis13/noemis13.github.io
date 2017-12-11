@@ -56,7 +56,7 @@ class PlayState extends GameState {
 
     createHud(){
         // HUD
-        this.textVersion = this.createHealthText(this.game.width*5/9, 40, 'N2')
+        this.textVersion = this.createHealthText(this.game.width*5/9, 40, 'N3')
         this.textVersion.fixedToCamera = true
         
        // Pontuação
@@ -79,10 +79,8 @@ class PlayState extends GameState {
         this.holeMap = this.game.add.group()
         
         mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
-        mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap);     
+        mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
         
-        this.holeMap.callAll('animations.add', 'animations', 'spin', [0, 1, 2, 3, 4, 5], 5, true);
-        this.holeMap.callAll('animations.play', 'animations', 'spin');    
     }
 
    
