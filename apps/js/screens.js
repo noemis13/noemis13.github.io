@@ -35,7 +35,7 @@ class PlayState extends GameState {
         // players
         this.player1 = this.game.add.sprite(this.game.width/5, this.game.height/4, 'player')
         this.player1.anchor.setTo(0.5, 0.5)
-        this.player1.scale.setTo(0.01, 0.01)
+        this.player1.scale.setTo(0.015, 0.015)
         this.game.physics.enable(this.player1, Phaser.Physics.ARCADE)
         this.player1.body.setCircle(this.width/2);
 
