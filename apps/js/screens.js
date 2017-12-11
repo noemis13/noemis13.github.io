@@ -5,7 +5,7 @@ class PlayState extends GameState {
         this.game.load.image('player', 'assets/ball.png')
         this.game.load.image('background', 'assets/screen-bg.png')
         this.game.load.image('panel', 'assets/panel.png')
-        this.game.load.image('box', 'assets/loading-bar.png')
+        this.game.load.image('box', 'assets/element-w.png')
         this.game.load.spritesheet('hole', 'assets/hole.png', 265, 253)
 
         this.game.load.image('fullscreen-button', 'assets/fullscreen-button.png')
@@ -33,9 +33,9 @@ class PlayState extends GameState {
         this.createMap()
          
         // players
-        this.player1 = this.game.add.sprite(this.game.width/1.5, this.game.height-140, 'player')
+        this.player1 = this.game.add.sprite(this.game.width/5, this.game.height/4, 'player')
         this.player1.anchor.setTo(0.5, 0.5)
-        this.player1.scale.setTo(0.02, 0.02)
+        this.player1.scale.setTo(0.01, 0.01)
         this.game.physics.enable(this.player1, Phaser.Physics.ARCADE)
         this.player1.body.setCircle(this.width/2);
 
@@ -51,7 +51,7 @@ class PlayState extends GameState {
         window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
         
         // HUD
-        this.text1 = this.createHealthText(this.game.width*5/9, 40, 'V7')
+        this.text1 = this.createHealthText(this.game.width*5/9, 40, 'V8')
          
         // Pontuação
         this.textLevels = this.createHealthText(this.game.width*2/9, 40, 'LEVEL:1/3 ')
@@ -75,7 +75,7 @@ class PlayState extends GameState {
         this.map = this.game.add.group()
         this.holeMap = this.game.add.group()
         
-        mapTmx.createFromObjects('Object Layer 1', 1, 'box', 0, true, false, this.map, Block);
+        mapTmx.createFromObjects('Object Layer 1', 9, 'box', 0, true, false, this.map, Block);
         mapTmx.createFromObjects('Object Layer 1', 2, 'hole', 0, true, false, this.holeMap);     
         
         this.holeMap.callAll('animations.add', 'animations', 'spin', [0, 1, 2, 3, 4, 5], 5, true);
