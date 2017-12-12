@@ -67,7 +67,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":6,
+ "nextobjectid":7,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.0.3",
