@@ -96,6 +96,7 @@ class PlayState extends GameState {
        this.textTime = this.createHealthText(this.game.width*5/9, 25, 'TEMPO: '+this.time)
        this.textTime.fixedToCamera = true
        this.game.time.events.loop(1000, this.updateTime, this);
+
     }
 
     
@@ -207,6 +208,9 @@ class PlayState extends GameState {
         this.physics.arcade.collide(this.ball, this.holeMap, this.finishLevel, null, this);
         //this.physics.arcade.collide(this.ball, this.holeMap, this.boxCollision, null, this);
         
+
+        // Limite da bola
+        this.screenBounds()
     }
 
     boxCollision() {
@@ -231,6 +235,14 @@ class PlayState extends GameState {
 	
     }
 
+    screenBounds() {
+        
+
+        if (this.ball.y < this.game.height/12+this.ball.width) {
+            this.ball.y = this.game.height/12+this.ball.width
+        }
+    }
+    
 
     render() {
        this.game.debug.body(this.ball)
