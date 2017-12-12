@@ -48,6 +48,13 @@ class PlayState extends GameState {
 		this.pauseButton.input.useHandCursor = true;
         this.pauseButton.fixedToCamera = true
         
+        //adicionar audio
+        this.hitSound = this.game.add.audio('audioHit');
+        this.audioLevel = this.game.add.audio('audioLevelUp');        
+        this.audioFinal = this.game.add.audio('audioFinalLevel');        
+        this.audioDie = this.game.add.audio('audioDie')
+        this.audioLevel1 = this.game.add.audio('audioLevel1')
+       
 
         // Mapa do jogo
         this.createMap()
@@ -75,13 +82,7 @@ class PlayState extends GameState {
         }    
 
 
-        //adicionar audio
-        this.hitSound = this.game.add.audio('audioHit');
-        this.audioLevel = this.game.add.audio('audioLevelUp');        
-        this.audioFinal = this.game.add.audio('audioFinalLevel');        
-        this.audioDie = this.game.add.audio('audioDie')
-        this.audioLevel1 = this.game.add.audio('audioLevel1')
-        
+ 
         // adicionar controles de full screen a tela
         super.initFullScreenButtons()
         
@@ -134,8 +135,7 @@ class PlayState extends GameState {
     }
 
     createMap2(){
-        this.audioLevel1.stop()
-
+        
 		this.time = 0;
 		this.numberOfLevel++;
 		this.textTime.setText("TEMPO: "+this.time);
@@ -323,6 +323,8 @@ class PlayState extends GameState {
         alert('Parabéns, fase completa!! !\nTempo total de jogo: '+this.time+' segundos!');
 
         if(this.numberOfLevel == 1){
+            this.audioLevel1.stop()
+            
             this.createMap2()
         
         } else if(this.numberOfLevel == 2){
