@@ -18,7 +18,7 @@ class Hole extends Phaser.Sprite {
        super(game, x, y, asset)
         this.game.physics.arcade.enable(this)
         this.anchor.setTo(0.5, 0.5) 
-        this.body.setCircle(this.width-24);
+        this.body.setCircle(this.width-22);
         //this.body.syncBounds = true
         this.body.immovable = true
         this.tag = 'hole'

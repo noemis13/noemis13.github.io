@@ -90,7 +90,7 @@ class PlayState extends GameState {
 
     createHud(){
         // HUD
-        this.textVersion = this.createHealthText(this.game.width*7/9, 25, 'N4')
+        this.textVersion = this.createHealthText(this.game.width*7/9, 25, 'N1')
         this.textVersion.fixedToCamera = true
         
        // Pontuação
@@ -227,12 +227,12 @@ class PlayState extends GameState {
     }
 
     boxCollision() {
+        this.hitSound.play();
+		
         if("vibrate" in window.navigator) {
             window.navigator.vibrate(100);
         }
 
-        this.hitSound.play();
-		
     }
 
     updateTime(){
