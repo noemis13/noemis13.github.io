@@ -29,3 +29,20 @@ class Hole extends Phaser.Sprite {
         
     }
 }
+
+class Enemie extends Phaser.Sprite {
+    constructor(game, x, y, asset) {
+       super(game, x, y, asset)
+        this.game.physics.arcade.enable(this)
+        this.anchor.set(0.5) 
+        this.body.syncBounds = true
+        this.body.immovable = true
+        this.tag = 'hole'
+        this.autoCull = true
+       
+        var anime = this.animations.add('spin', [0, 1, 2, 3], 5, true) //criar a animação com frames para estados dos sprites (0 a n)
+        this.animations.play('spin')
+        
+        
+    }
+}

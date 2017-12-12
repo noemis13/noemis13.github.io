@@ -10,7 +10,8 @@ class PlayState extends GameState {
         this.game.load.image('fullscreen-button', 'assets/fullscreen-button.png')
         this.game.load.image('pause', 'assets/button-pause.png')
         
-
+        this.game.load.spritesheet('droid', 'assets/droid.png', 32, 32)
+        
         this.game.load.tilemap('level1', 'assets/map1.json', null, Phaser.Tilemap.TILED_JSON)
         this.game.load.tilemap('level2', 'assets/map2.json', null, Phaser.Tilemap.TILED_JSON)
         this.game.load.tilemap('level3', 'assets/map3.json', null, Phaser.Tilemap.TILED_JSON)
@@ -43,7 +44,7 @@ class PlayState extends GameState {
         this.ball = this.game.add.sprite(this.game.width/2, this.game.height-40, 'player')
         this.ball.anchor.set(0.5);        
         this.game.physics.enable(this.ball, Phaser.Physics.ARCADE)
-        this.ball.body.setCircle(this.width/2);
+        this.ball.body.setCircle(this.ball.width/2);
 
         this.ball.body.collideWorldBounds = true
         this.ball.body.bounce.set(0.3, 0.3)
@@ -135,9 +136,11 @@ class PlayState extends GameState {
         
         this.map = this.game.add.group()
         this.holeMap = this.game.add.group()
+        this.enemieMap = this.game.add.group()
         
         mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
         mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
+        mapTmx.createFromObjects('Camada de Objetos 1', 10, 'droid', 0, true, false, this.enemieMap, Enemie);     
         
     }
     
@@ -156,7 +159,7 @@ class PlayState extends GameState {
         
         this.map.destroy()
         this.holeMap.destroy()
-        
+        this.enemieMap.destroy()
         
         // Mapa level 3
         let mapTmx = this.game.add.tilemap('level3');
@@ -164,9 +167,11 @@ class PlayState extends GameState {
         
         this.map = this.game.add.group()
         this.holeMap = this.game.add.group()
+        this.enemieMap = this.game.add.group()
         
         mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
         mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
+        mapTmx.createFromObjects('Camada de Objetos 1', 10, 'droid', 0, true, false, this.enemieMap, Enemie);     
         
     }
 
