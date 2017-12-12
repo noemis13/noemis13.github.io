@@ -4,7 +4,7 @@ class Block extends Phaser.Sprite {
     constructor(game, x, y, asset) {
         super(game, x, y, asset)
         this.game.physics.arcade.enable(this)
-        this.anchor.setTo(0.3, 0.3)
+        //this.anchor.setTo(0.3, 0.3)
         this.body.syncBounds = true
         this.body.immovable = true
         this.tag = 'wood'
@@ -17,9 +17,9 @@ class Hole extends Phaser.Sprite {
     constructor(game, x, y, asset) {
        super(game, x, y, asset)
         this.game.physics.arcade.enable(this)
-        this.anchor.set(0.5) 
-        this.body.syncBounds = true
-        this.body.setCircle(this.width/2);
+        this.anchor.setTo(0.5, 0.5) 
+        this.body.setCircle(this.width-24);
+        //this.body.syncBounds = true
         this.body.immovable = true
         this.tag = 'hole'
         this.autoCull = true

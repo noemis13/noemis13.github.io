@@ -43,7 +43,7 @@ class PlayState extends GameState {
         // Mapa do jogo
         this.createMap()
          
-        // players
+        // player
         this.ball = this.game.add.sprite(this.game.width/2, this.game.height-40, 'player')
         this.ball.anchor.set(0.5);        
         this.game.physics.enable(this.ball, Phaser.Physics.ARCADE)
@@ -51,7 +51,7 @@ class PlayState extends GameState {
         this.ball.body.collideWorldBounds = true
         this.ball.body.bounce.set(0.3, 0.3)
         //this.ball.body.maxVelocity = 50
-        this.ball.body.drag.set(100)
+        this.ball.body.drag.set(150)
         this.game.camera.follow(this.ball)
     
         // Controlar player
