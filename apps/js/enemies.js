@@ -64,3 +64,37 @@ class Fire extends Phaser.Sprite {
         this.animations.play('spin')
     }
 }
+
+class Boss extends Phaser.Sprite {
+    constructor(game, x, y, asset) {
+       super(game, x, y, asset)
+        this.game.physics.arcade.enable(this)
+        this.anchor.set(0.5) 
+        this.body.syncBounds = true
+        this.body.setCircle(this.width/2);
+        
+        this.body.immovable = true
+        this.tag = 'saw'
+        this.autoCull = true
+       
+        this.game.add.tween(this)
+            .to ( { alpha: 0.5 }, 500 )
+            .to ( { alpha: 1.2 }, 500 )
+            .loop(-1)
+            .start()
+        
+        this.game.add.tween(this)
+            .to ( { angle: -359 }, 2000 )
+            .loop(-1)
+            .start()
+        
+         this.game.add.tween(this)
+            .to( {x: game.width-60, y: 60}, game.width/0.2 )
+            .to( {x: this.x, y: this.y}, game.height/0.2 )
+            //.to( {x: 50, y: 50}, game.height/0.2 )
+            .loop(-1)
+            .start()
+        
+    }
+
+}
