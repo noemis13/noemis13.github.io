@@ -247,6 +247,9 @@ class PlayState extends GameState {
         
         } else if(this.numberOfLevel == 2){
             this.createMap3()
+        } else {
+            this.game.camera.onFadeComplete.removeAll(this)            
+            this.state.start('GameOver')
         }
 	
     }
