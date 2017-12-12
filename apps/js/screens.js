@@ -195,8 +195,9 @@ class PlayState extends GameState {
     }
 
     update() { 
+        this.physics.arcade.collide(this.ball, this.map, this.boxCollision, null, this);
+        
         //Controle
-
         if (this.keys1.leftKey.isDown) {
             this.ball.body.velocity.x -= 10;
         } else
@@ -212,9 +213,8 @@ class PlayState extends GameState {
         }
 
         // Colisão
-        this.physics.arcade.collide(this.ball, this.enemieMap, this.restart, null, this)
-        this.physics.arcade.collide(this.ball, this.map, this.boxCollision, null, this);
         this.physics.arcade.collide(this.ball, this.holeMap, this.finishLevel, null, this);
+        this.physics.arcade.collide(this.ball, this.enemieMap, this.restart, null, this)
         //this.physics.arcade.collide(this.ball, this.holeMap, this.boxCollision, null, this);
         
 
