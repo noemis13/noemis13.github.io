@@ -10,7 +10,6 @@ class StartGame extends Phaser.State {
 
     create() {
         super.create()
-        
         //colocar fundo
         
         this.game.renderer.roundPixels = true
@@ -34,8 +33,30 @@ class StartGame extends Phaser.State {
             var enterKey = this.game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
                 enterKey.onDown.addOnce(this.startGame,this);
         },this);
+
+        
+        // adicionar controles de full screen a tela
+        this.initFullScreenButtons()
+        
+        
     }
 
+    initFullScreenButtons() {
+        this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        
+        let fullScreenButton = this.input.keyboard.addKey(Phaser.Keyboard.ONE);
+        fullScreenButton.onDown.add(this.toggleFullScreen, this)    
+
+    }
+
+    toggleFullScreen() {
+        this.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
+        if (this.scale.isFullScreen) {
+            this.scale.stopFullScreen();
+        } else {
+            this.scale.startFullScreen(false);
+        }
+    }
     startGame(){
         this.game.state.start('Play')
     }

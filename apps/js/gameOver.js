@@ -72,6 +72,7 @@ class GameOver extends Phaser.State {
             line = '';
             this.game.time.events.repeat(80, content[index].length + 1, this.updateLine, this);
         }
+       
         
     }
 

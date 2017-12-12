@@ -13,9 +13,9 @@ class Game extends Phaser.Game {
         this.state.add('StartGame', StartGame, false)
         this.state.add('GameOver', GameOver, false)
         
-        //this.state.start('StartGame')
+        this.state.start('StartGame')
         //this.state.start('Play')
-        this.state.start('GameOver')
+        //this.state.start('GameOver')
 
         GAME = this
     }
@@ -34,7 +34,7 @@ class GameState extends Phaser.State {
     }
 
     toggleFullScreen() {
-        this.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
+        this.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
         if (this.scale.isFullScreen) {
             this.scale.stopFullScreen();
         } else {
@@ -44,7 +44,7 @@ class GameState extends Phaser.State {
 }
 
 function fullScreen() {
-    GAME.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
+    GAME.scale.fullScreenScaleMode = Phaser.ScaleManager.SHOW_ALL;
     if (GAME.scale.isFullScreen) {
         GAME.scale.stopFullScreen();
     } else {

@@ -291,7 +291,7 @@ class PlayState extends GameState {
 
     
     render() {
-        this.game.debug.body(this.ball)
+      //  this.game.debug.body(this.ball)
         this.holeMap.forEach( this.game.debug.body, this.game.debug, true);
         this.map.forEach( this.game.debug.body, this.game.debug, true);
         //this.enemieMap.forEach( this.game.debug.body, this.game.debug, true);
