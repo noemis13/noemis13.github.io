@@ -13,6 +13,8 @@ class PlayState extends GameState {
         
         this.game.load.spritesheet('droid', 'assets/droid.png', 32, 32)
         
+        this.load.audio('audioHit', 'assets/bounce.m4a')
+
         this.game.load.tilemap('level1', 'assets/map1.json', null, Phaser.Tilemap.TILED_JSON)
         this.game.load.tilemap('level2', 'assets/map2.json', null, Phaser.Tilemap.TILED_JSON)
         this.game.load.tilemap('level3', 'assets/map3.json', null, Phaser.Tilemap.TILED_JSON)
@@ -49,7 +51,7 @@ class PlayState extends GameState {
         this.ball.body.collideWorldBounds = true
         this.ball.body.bounce.set(0.3, 0.3)
         //this.ball.body.maxVelocity = 50
-        this.ball.body.drag.set(300)
+        this.ball.body.drag.set(100)
         this.game.camera.follow(this.ball)
     
         // Controlar player
@@ -63,6 +65,9 @@ class PlayState extends GameState {
             rightKey: this.game.input.keyboard.addKey(Phaser.Keyboard.RIGHT)
         }    
 
+
+        //adicionar audio
+        this.hitSound = this.game.add.audio('audioHit');
 
         // adicionar controles de full screen a tela
         super.initFullScreenButtons()
@@ -85,7 +90,7 @@ class PlayState extends GameState {
 
     createHud(){
         // HUD
-        this.textVersion = this.createHealthText(this.game.width*7/9, 25, 'N3')
+        this.textVersion = this.createHealthText(this.game.width*7/9, 25, 'N4')
         this.textVersion.fixedToCamera = true
         
        // Pontuação
@@ -215,7 +220,6 @@ class PlayState extends GameState {
         // Colisão
         this.physics.arcade.collide(this.ball, this.holeMap, this.finishLevel, null, this);
         this.physics.arcade.collide(this.ball, this.enemieMap, this.restart, null, this)
-        //this.physics.arcade.collide(this.ball, this.holeMap, this.boxCollision, null, this);
         
 
         // Limite da bola
@@ -226,6 +230,9 @@ class PlayState extends GameState {
         if("vibrate" in window.navigator) {
             window.navigator.vibrate(100);
         }
+
+        this.hitSound.play();
+		
     }
 
     updateTime(){
@@ -251,6 +258,8 @@ class PlayState extends GameState {
     }
     
     restart(){
+        this.hitSound.play();
+		
         alert('Que pena, voê morreu! :(');
         
         this.map.destroy()
