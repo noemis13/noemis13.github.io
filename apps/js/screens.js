@@ -19,6 +19,7 @@ class PlayState extends GameState {
         this.load.audio('audioLevelUp', 'assets/smb_stage_clear.wav')
         this.load.audio('audioFinalLevel', 'assets/smb3_fortress_clear.wav')
         this.load.audio('audioDie', 'assets/smb_mariodie.wav')
+        this.load.audio('audioLevel1', 'assets/level32.ogg')
         
         this.game.load.tilemap('level1', 'assets/map1.json', null, Phaser.Tilemap.TILED_JSON)
         this.game.load.tilemap('level2', 'assets/map2.json', null, Phaser.Tilemap.TILED_JSON)
@@ -79,7 +80,8 @@ class PlayState extends GameState {
         this.audioLevel = this.game.add.audio('audioLevelUp');        
         this.audioFinal = this.game.add.audio('audioFinalLevel');        
         this.audioDie = this.game.add.audio('audioDie')
-
+        this.audioLevel1 = this.game.add.audio('audioLevel1')
+        
         // adicionar controles de full screen a tela
         super.initFullScreenButtons()
         
@@ -115,6 +117,8 @@ class PlayState extends GameState {
 
     
     createMap(){
+        this.audioLevel1.play()
+
         let mapTmx = this.game.add.tilemap('level1');
         this.game.world.setBounds(0, 0, mapTmx.widthInPixels, mapTmx.heightInPixels);
 
@@ -130,6 +134,8 @@ class PlayState extends GameState {
     }
 
     createMap2(){
+        this.audioLevel1.stop()
+
 		this.time = 0;
 		this.numberOfLevel++;
 		this.textTime.setText("TEMPO: "+this.time);
