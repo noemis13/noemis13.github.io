@@ -15,13 +15,13 @@ class PlayState extends GameState {
         
         this.game.load.spritesheet('droid', 'assets/droid.png', 32, 32)
         this.game.load.spritesheet('fire', 'assets/fire.png', 26, 32)
-        
+        this.load.spritesheet('audioOff', 'assets/button-audio.png', 35, 35);
+		
         this.load.audio('audioHit', 'assets/bounce.mp3')
         this.load.audio('audioLevelUp', 'assets/smb_stage_clear.wav')
         this.load.audio('audioFinalLevel', 'assets/smb3_fortress_clear.wav')
         this.load.audio('audioDie', 'assets/smb_mariodie.wav')
         this.load.audio('audioLevel1', 'assets/level32.ogg')
-        this.load.audio('audioLevel2', 'assets/level32.ogg')
         
         this.game.load.tilemap('level1', 'assets/map1.json', null, Phaser.Tilemap.TILED_JSON)
         this.game.load.tilemap('level2', 'assets/map2.json', null, Phaser.Tilemap.TILED_JSON)
@@ -44,6 +44,17 @@ class PlayState extends GameState {
         let background = this.game.add.tileSprite(0, this.game.height/12, this.game.width, this.game.height, 'background')
         background.fixedToCamera = true
 
+        // Botão audio
+        this.audioStatus = true;
+        this.audioButton = this.add.button(this.game.width-50, 2, 'audioOff', this.manageAudio, this);
+        this.audioButton.anchor.set(1,0);
+		this.audioButton.input.useHandCursor = true;
+		this.audioButton.animations.add('true', [0], 10, true);
+		this.audioButton.animations.add('false', [1], 10, true);
+		this.audioButton.animations.play(this.audioStatus);
+		this.audioButton.fixedToCamera = true
+
+		
         // Botão de pausa
         this.pauseButton = this.add.button(this.game.width-8, 2, 'pause', this.managePause, this);
 		this.pauseButton.anchor.set(1,0);
@@ -56,10 +67,7 @@ class PlayState extends GameState {
         this.audioFinal = this.game.add.audio('audioFinalLevel');        
         this.audioDie = this.game.add.audio('audioDie')
         this.audioLevel1 = this.game.add.audio('audioLevel1')
-       
-        this.audioLevel1.play()
         
-
         // Mapa do jogo
         this.createMap()
          
@@ -93,6 +101,11 @@ class PlayState extends GameState {
         this.createHud()
     }
 
+    manageAudio() {
+		this.audioStatus =! this.audioStatus;
+		this.audioButton.animations.play(this.audioStatus);
+    }
+    
     managePause() {
         this.fontMessage = { font: "24px Arial", fill: "#e4beef",  align: "center", stroke: "#320C3E", strokeThickness: 4 };
 		
@@ -122,6 +135,7 @@ class PlayState extends GameState {
 
     
     createMap(){
+        
         let mapTmx = this.game.add.tilemap('level1');
         this.game.world.setBounds(0, 0, mapTmx.widthInPixels, mapTmx.heightInPixels);
 
@@ -237,8 +251,10 @@ class PlayState extends GameState {
 
     createMap5(){
         // Parar audio level e iniciar audio final
-        this.audioFinal.play()
-        
+        if(this.audioStatus) {
+            this.audioFinal.play()
+        }
+
         this.time = 0;
 		this.numberOfLevel++;
 		this.textTime.setText("TEMPO: "+this.time);
@@ -318,8 +334,10 @@ class PlayState extends GameState {
     }
 
     boxCollision() {
-        this.hitSound.play();
-		
+        if(this.audioStatus) {
+            this.hitSound.play();
+        }
+
         if("vibrate" in window.navigator) {
             window.navigator.vibrate(100);
         }
@@ -334,13 +352,14 @@ class PlayState extends GameState {
     finishLevel(){
         if(this.star == 1){
             //Audio finald e level
-            this.audioLevel.play()
-        
+            if(this.audioStatus) {
+                this.audioLevel.play()
+            }
+                    
             alert('Parabéns, fase completa!! !\nTempo total de jogo: '+this.time+' segundos!');
     
             if(this.numberOfLevel == 1){
                 this.star = 0
-                this.audioLevel1.stop()
                 this.createMap2()
             
             } else if(this.numberOfLevel == 2){
@@ -353,15 +372,19 @@ class PlayState extends GameState {
     
             }else if(this.numberOfLevel == 4){
                 this.star = 0
-                this.audioLevel.stop()
+                if(this.audioStatus) {   
+                    this.audioLevel.stop()
+                }
                 this.createMap5()
                 
             }else {
                 this.star = 0
                 this.audioLevel.stop()
-                this.audioLevel1.stop()
-                this.audioLevel1.play()
-            
+                this.audioLevel1.stop()    
+                
+                if(this.audioStatus) {
+                    this.audioLevel1.play()
+                }
                 //this.game.camera.onFadeComplete.removeAll(this)            
                 this.map.destroy()
                 this.holeMap.destroy()
@@ -386,9 +409,14 @@ class PlayState extends GameState {
     }
     
     restart(){
-        this.hitSound.play();
         this.audioLevel.stop();
-        this.audioDie.play();
+        
+        if(this.audioStatus) {
+            this.hitSound.play();
+            this.audioDie.play();
+    
+        }
+
         
         alert('Que pena, voê morreu! :(');
         

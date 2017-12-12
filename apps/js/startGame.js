@@ -5,6 +5,7 @@ class StartGame extends Phaser.State {
     preload(){
         this.game.load.image('background', 'assets/screen-mainmenu.png')
         this.game.load.spritesheet('start', 'assets/button-start.png', 146, 51)
+        this.load.audio('audioLevel1', 'assets/level32.ogg')
         
     }    
 
@@ -17,7 +18,10 @@ class StartGame extends Phaser.State {
         this.game.physics.startSystem(Phaser.Physics.ARCADE)
     
         let background = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'background')
-    
+        
+        //Audio
+        this.audioLevel1 = this.game.add.audio('audioLevel1')
+        this.audioLevel1.play()
         //Dados
         var txtName = this.game.add.text(this.game.world.centerX,100,'BALL HIT',{font:'45px Arial Black',fill:'#696969'});
         txtName.anchor.set(0.5);
@@ -59,6 +63,7 @@ class StartGame extends Phaser.State {
     }
     startGame(){
         this.game.state.start('Play')
+        this.audioLevel1.stop()
     }
     
 

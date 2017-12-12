@@ -38,11 +38,12 @@ class GameOver extends Phaser.State {
         txtName.strokeThickness = 16;
         txtName.setShadow(2, 2, "#DA70D6", 2, true, false);
 
-        var gameover = this.game.add.text(this.game.world.centerX,200, 'GAME OVER', { font: "30pt Arial Black", fill: "#19cb65", stroke: "#119f4e", strokeThickness: 2 })
+        
+        var gameover = this.game.add.text(this.game.world.centerX,200, 'GAME OVER', { font: "30px Arial", fill: "#e4beef",  align: "center", stroke: "#320C3E", strokeThickness: 4  })
         gameover.anchor.set(0.5)
 
         this.game.add.sprite(this.game.width, this.game.height, 'background')
-        text = this.game.add.text(50, 280, '', { font: "20pt Arial Black", fill: "#19cb65", stroke: "#119f4e", strokeThickness: 2 });      
+        text = this.game.add.text(50, 280, '', { font: "20pt Arial Black", fill: "#e4beef", align: "center", stroke: "#320C3E", strokeThickness: 2 });      
         this.nextLine();
         
     }
