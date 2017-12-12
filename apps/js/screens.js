@@ -6,9 +6,10 @@ class PlayState extends GameState {
         this.game.load.image('background', 'assets/screen-bg.png')
         this.game.load.image('panel', 'assets/panel.png')
         this.game.load.image('box', 'assets/element-w.png')
-        this.game.load.image('hole', 'assets/hole.png')
-       
+        this.game.load.image('hole', 'assets/hole.png')     
         this.game.load.image('fullscreen-button', 'assets/fullscreen-button.png')
+        this.game.load.image('pause', 'assets/button-pause.png')
+        
 
         this.game.load.tilemap('level1', 'assets/map1.json', null, Phaser.Tilemap.TILED_JSON)
         this.game.load.tilemap('level2', 'assets/map2.json', null, Phaser.Tilemap.TILED_JSON)
@@ -29,20 +30,26 @@ class PlayState extends GameState {
         let background = this.game.add.tileSprite(0, this.game.height/12, this.game.width, this.game.height, 'background')
         background.fixedToCamera = true
 
+        // Botão de pausa
+        this.pauseButton = this.add.button(this.game.width-8, 2, 'pause', this.managePause, this);
+		this.pauseButton.anchor.set(1,0);
+		this.pauseButton.input.useHandCursor = true;
+
+
         // Mapa do jogo
         this.createMap()
          
         // players
-        this.player1 = this.game.add.sprite(this.game.width/2, this.game.height-40, 'player')
-        this.player1.anchor.setTo(0.5, 0.5)
-        this.game.physics.enable(this.player1, Phaser.Physics.ARCADE)
-        this.player1.body.setCircle(this.width/2);
+        this.ball = this.game.add.sprite(this.game.width/2, this.game.height-40, 'player')
+        this.ball.anchor.set(0.5);        
+        this.game.physics.enable(this.ball, Phaser.Physics.ARCADE)
+        this.ball.body.setCircle(this.width/2);
 
-        this.player1.body.collideWorldBounds = true
-        this.player1.body.bounce.set(0.3, 0.3)
-        //this.player1.body.maxVelocity = 50
-        this.player1.body.drag.set(300)
-        this.game.camera.follow(this.player1)
+        this.ball.body.collideWorldBounds = true
+        this.ball.body.bounce.set(0.3, 0.3)
+        //this.ball.body.maxVelocity = 50
+        this.ball.body.drag.set(300)
+        this.game.camera.follow(this.ball)
     
         // Controlar player
         window.addEventListener("deviceorientation",  this.handleOrientation.bind(this), true);
@@ -62,9 +69,22 @@ class PlayState extends GameState {
         this.createHud()
     }
 
+    managePause() {
+        this.fontMessage = { font: "24px Arial", fill: "#e4beef",  align: "center", stroke: "#320C3E", strokeThickness: 4 };
+		
+		this.game.paused = true;
+		var pausedText = this.add.text(this.game.width*0.5, 250, "JOGO PAUSADO!,\nclique para continuar!", this.fontMessage);
+		pausedText.anchor.set(0.5);
+		this.input.onDown.add(function(){
+			pausedText.destroy();
+			this.game.paused = false;
+		}, this);
+	}
+	
+
     createHud(){
         // HUD
-        this.textVersion = this.createHealthText(this.game.width*7/9, 25, 'N8')
+        this.textVersion = this.createHealthText(this.game.width*7/9, 25, 'N2')
         this.textVersion.fixedToCamera = true
         
        // Pontuação
@@ -99,10 +119,10 @@ class PlayState extends GameState {
 		this.textTime.setText("Tempo: "+this.timer);
 		//this.totalTimeText.setText("Total time: "+this.totalTimer);
 		this.textLevels.setText("Level:2/3 ");
-		this.player1.body.x = this.game.width/2;
-		this.player1.body.y = this.game.height-40;
-		this.player1.body.velocity.x = 0;
-        this.player1.body.velocity.y = 0;
+		this.ball.body.x = this.game.width/2;
+		this.ball.body.y = this.game.height-40;
+		this.ball.body.velocity.x = 0;
+        this.ball.body.velocity.y = 0;
         
         this.map.destroy()
         this.holeMap.destroy()
@@ -128,10 +148,10 @@ class PlayState extends GameState {
 		this.textTime.setText("Tempo: "+this.timer);
 		//this.totalTimeText.setText("Total time: "+this.totalTimer);
 		this.textLevels.setText("Level:2/3 ");
-		this.player1.body.x = this.game.width/2;
-		this.player1.body.y = this.game.height-40;
-		this.player1.body.velocity.x = 0;
-        this.player1.body.velocity.y = 0;
+		this.ball.body.x = this.game.width/2;
+		this.ball.body.y = this.game.height-40;
+		this.ball.body.velocity.x = 0;
+        this.ball.body.velocity.y = 0;
         
         this.map.destroy()
         this.holeMap.destroy()
@@ -152,8 +172,8 @@ class PlayState extends GameState {
     handleOrientation(e) {
         var y = e.beta;
         var x = e.gamma;
-        this.player1.body.velocity.x += x;
-        this.player1.body.velocity.y += y;
+        this.ball.body.velocity.x += x;
+        this.ball.body.velocity.y += y;
     }
 
     createHealthText(x, y, string) {
@@ -169,23 +189,23 @@ class PlayState extends GameState {
         //Controle
 
         if (this.keys1.leftKey.isDown) {
-            this.player1.body.velocity.x -= 10;
+            this.ball.body.velocity.x -= 10;
         } else
         if (this.keys1.rightKey.isDown) {
-            this.player1.body.velocity.x += 10;
+            this.ball.body.velocity.x += 10;
         }
 
         if (this.keys1.upKey.isDown) {
-            this.player1.body.velocity.y -= 10;
+            this.ball.body.velocity.y -= 10;
         } else 
         if (this.keys1.downKey.isDown) {
-            this.player1.body.velocity.y += 10;
+            this.ball.body.velocity.y += 10;
         }
 
         // Colisão
-        this.physics.arcade.collide(this.player1, this.map, this.boxCollision, null, this);
-        this.physics.arcade.collide(this.player1, this.holeMap, this.finishLevel, null, this);
-        //this.physics.arcade.collide(this.player1, this.holeMap, this.boxCollision, null, this);
+        this.physics.arcade.collide(this.ball, this.map, this.boxCollision, null, this);
+        this.physics.arcade.collide(this.ball, this.holeMap, this.finishLevel, null, this);
+        //this.physics.arcade.collide(this.ball, this.holeMap, this.boxCollision, null, this);
         
     }
 
@@ -213,7 +233,7 @@ class PlayState extends GameState {
 
 
     render() {
-       this.game.debug.body(this.player1)
+       this.game.debug.body(this.ball)
        
     }
 }

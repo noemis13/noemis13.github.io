@@ -20,7 +20,7 @@ class Game extends Phaser.Game {
 
 }
 
-// CLASSE GENERICA DE TELAS //////////////////////////////////////////////////////
+// CLASSE GENERICA DE TELAS 
 
 class GameState extends Phaser.State {
     initFullScreenButtons() {
@@ -29,13 +29,6 @@ class GameState extends Phaser.State {
         let fullScreenButton = this.input.keyboard.addKey(Phaser.Keyboard.ONE);
         fullScreenButton.onDown.add(this.toggleFullScreen, this)    
 
-        // full screen touch button
-        /*let fullScreenIcon = this.game.add.sprite(this.game.width*1/9, 100, 
-            'fullscreen-button')
-        fullScreenIcon.anchor.setTo(1, 1)
-        fullScreenIcon.scale.setTo(0.6, 0.6)
-        fullScreenIcon.inputEnabled = true //clique
-        fullScreenIcon.events.onInputDown.add(this.toggleFullScreen, this) //clique */          
     }
 
     toggleFullScreen() {
