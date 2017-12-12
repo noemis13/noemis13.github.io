@@ -10,14 +10,17 @@ class PlayState extends GameState {
         this.game.load.image('hole', 'assets/hole.png')     
         this.game.load.image('fullscreen-button', 'assets/fullscreen-button.png')
         this.game.load.image('pause', 'assets/button-pause.png')
+        this.game.load.image('boss', 'assets/saw.png')
         
         this.game.load.spritesheet('droid', 'assets/droid.png', 32, 32)
+        this.game.load.spritesheet('fire', 'assets/fire.png', 26, 32)
         
         this.load.audio('audioHit', 'assets/bounce.m4a')
 
         this.game.load.tilemap('level1', 'assets/map1.json', null, Phaser.Tilemap.TILED_JSON)
         this.game.load.tilemap('level2', 'assets/map2.json', null, Phaser.Tilemap.TILED_JSON)
         this.game.load.tilemap('level3', 'assets/map3.json', null, Phaser.Tilemap.TILED_JSON)
+        this.game.load.tilemap('level4', 'assets/map4.json', null, Phaser.Tilemap.TILED_JSON)
         
     }
 
@@ -38,7 +41,8 @@ class PlayState extends GameState {
         this.pauseButton = this.add.button(this.game.width-8, 2, 'pause', this.managePause, this);
 		this.pauseButton.anchor.set(1,0);
 		this.pauseButton.input.useHandCursor = true;
-
+        this.pauseButton.fixedToCamera = true
+        
 
         // Mapa do jogo
         this.createMap()
@@ -90,11 +94,11 @@ class PlayState extends GameState {
 
     createHud(){
         // HUD
-        this.textVersion = this.createHealthText(this.game.width*7/9, 25, 'N6')
+        this.textVersion = this.createHealthText(this.game.width*7/9, 25, 'N10')
         this.textVersion.fixedToCamera = true
         
        // Pontuação
-       this.textLevels = this.createHealthText(this.game.width*2/9, 25, 'LEVEL:1/3 ')
+       this.textLevels = this.createHealthText(this.game.width*2/9, 25, 'LEVEL:1/5 ')
        this.textLevels.fixedToCamera = true
         
        // Tempo
@@ -112,6 +116,7 @@ class PlayState extends GameState {
 
         this.map = this.game.add.group()
         this.holeMap = this.game.add.group()
+        this.enemieMap = this.game.add.group()
         
         mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
         mapTmx.createFromObjects('Camada de Objetos 1', 3, 'boxVertical', 0, true, false, this.map, Block);
@@ -121,12 +126,10 @@ class PlayState extends GameState {
     }
 
     createMap2(){
-        this.totalTimer += this.time;
 		this.time = 0;
 		this.numberOfLevel++;
-		this.textTime.setText("Tempo: "+this.timer);
-		//this.totalTimeText.setText("Total time: "+this.totalTimer);
-		this.textLevels.setText("Level:2/3 ");
+		this.textTime.setText("TEMPO: "+this.time);
+		this.textLevels.setText("Level:2/5 ");
 		this.ball.body.x = this.game.width/2;
 		this.ball.body.y = this.game.height-40;
 		this.ball.body.velocity.x = 0;
@@ -146,19 +149,17 @@ class PlayState extends GameState {
         
         mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
         mapTmx.createFromObjects('Camada de Objetos 1', 3, 'boxVertical', 0, true, false, this.map, Block);
-        mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
         mapTmx.createFromObjects('Camada de Objetos 1', 10, 'droid', 0, true, false, this.enemieMap, Enemie);     
+        mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
         
     }
     
     
     createMap3(){
-        this.totalTimer += this.time;
 		this.time = 0;
 		this.numberOfLevel++;
-		this.textTime.setText("Tempo: "+this.timer);
-		//this.totalTimeText.setText("Total time: "+this.totalTimer);
-		this.textLevels.setText("Level:2/3 ");
+		this.textTime.setText("TEMPO: "+this.time);
+		this.textLevels.setText("Level:3/5 ");
 		this.ball.body.x = this.game.width/2;
 		this.ball.body.y = this.game.height-40;
 		this.ball.body.velocity.x = 0;
@@ -178,11 +179,72 @@ class PlayState extends GameState {
         
         mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
         mapTmx.createFromObjects('Camada de Objetos 1', 3, 'boxVertical', 0, true, false, this.map, Block);
-        mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
         mapTmx.createFromObjects('Camada de Objetos 1', 10, 'droid', 0, true, false, this.enemieMap, Enemie);     
+        mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
         
     }
 
+    createMap4(){
+		this.time = 0;
+		this.numberOfLevel++;
+		this.textTime.setText("TEMPO: "+this.time);
+		this.textLevels.setText("Level:4/5 ");
+		this.ball.body.x = this.game.width/2;
+		this.ball.body.y = this.game.height-40;
+		this.ball.body.velocity.x = 0;
+        this.ball.body.velocity.y = 0;
+        
+        this.map.destroy()
+        this.holeMap.destroy()
+        this.enemieMap.destroy()
+        
+        // Mapa level 4
+        let mapTmx = this.game.add.tilemap('level4');
+        this.game.world.setBounds(0, 0, mapTmx.widthInPixels, mapTmx.heightInPixels);
+        
+        this.map = this.game.add.group()
+        this.holeMap = this.game.add.group()
+        this.enemieMap = this.game.add.group()
+        
+        mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
+        mapTmx.createFromObjects('Camada de Objetos 1', 3, 'boxVertical', 0, true, false, this.map, Block);
+        mapTmx.createFromObjects('Camada de Objetos 1', 10, 'droid', 0, true, false, this.enemieMap, Enemie);     
+        mapTmx.createFromObjects('Camada de Objetos 1', 11, 'fire', 0, true, false, this.enemieMap, Fire);     
+        mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);
+        
+    }
+
+    createMap4(){
+		this.time = 0;
+		this.numberOfLevel++;
+		this.textTime.setText("TEMPO: "+this.time);
+		this.textLevels.setText("Level:4/5 ");
+		this.ball.body.x = this.game.width/2;
+		this.ball.body.y = this.game.height-40;
+		this.ball.body.velocity.x = 0;
+        this.ball.body.velocity.y = 0;
+        
+        this.map.destroy()
+        this.holeMap.destroy()
+        this.enemieMap.destroy()
+        
+        // Mapa level 4
+        let mapTmx = this.game.add.tilemap('level4');
+        this.game.world.setBounds(0, 0, mapTmx.widthInPixels, mapTmx.heightInPixels);
+        
+        this.map = this.game.add.group()
+        this.holeMap = this.game.add.group()
+        this.enemieMap = this.game.add.group()
+        
+        mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
+        mapTmx.createFromObjects('Camada de Objetos 1', 3, 'boxVertical', 0, true, false, this.map, Block);
+        mapTmx.createFromObjects('Camada de Objetos 1', 10, 'droid', 0, true, false, this.enemieMap, Enemie);     
+        mapTmx.createFromObjects('Camada de Objetos 1', 11, 'fire', 0, true, false, this.enemieMap, Fire);     
+        mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);
+        
+    }
+
+    
     handleOrientation(e) {
         var y = e.beta;
         var x = e.gamma;
@@ -248,7 +310,10 @@ class PlayState extends GameState {
         } else if(this.numberOfLevel == 2){
             this.createMap3()
         
-        } else {
+        }else if(this.numberOfLevel == 3){
+            this.createMap4()
+        
+        }else {
             //this.game.camera.onFadeComplete.removeAll(this)            
             this.map.destroy()
             this.holeMap.destroy()
@@ -256,8 +321,7 @@ class PlayState extends GameState {
             
             this.textLevels.destroy()
             this.textTime.destroy()
-            this.pauseButton.destroy()
-
+            this.pauseButton.destroy()            
             this.state.start('GameOver')
         }
 	
@@ -279,7 +343,7 @@ class PlayState extends GameState {
         this.enemieMap.destroy()
         
         this.time = 0;
-		this.textTime.setText("Tempo: "+this.timer);
+		this.textTime.setText("Tempo: "+this.time);
 		this.textLevels.setText("Level:1/3 ");
 		this.ball.body.x = this.game.width/2;
 		this.ball.body.y = this.game.height-40;
@@ -294,7 +358,7 @@ class PlayState extends GameState {
       //  this.game.debug.body(this.ball)
         this.holeMap.forEach( this.game.debug.body, this.game.debug, true);
         this.map.forEach( this.game.debug.body, this.game.debug, true);
-        //this.enemieMap.forEach( this.game.debug.body, this.game.debug, true);
+        this.enemieMap.forEach( this.game.debug.body, this.game.debug, true);
         
         
     }

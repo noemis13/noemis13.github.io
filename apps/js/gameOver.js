@@ -19,13 +19,12 @@ var index = 0;
 var line = '';
 
 class GameOver extends Phaser.State {
-
     preload(){
         this.game.load.image('background', 'assets/screen-bg.png')  
     }    
 
     create() {
-        super.create()      
+        super.create()     
         
         // Fundo
         let background = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'background')
