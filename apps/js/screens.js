@@ -150,7 +150,7 @@ class PlayState extends GameState {
         
         this.map.destroy()
         this.holeMap.destroy()
-        
+        this.itemMap.destroy()        
         
         // Mapa level 2
         let mapTmx = this.game.add.tilemap('level2');
@@ -159,11 +159,13 @@ class PlayState extends GameState {
         this.map = this.game.add.group()
         this.holeMap = this.game.add.group()
         this.enemieMap = this.game.add.group()
+        this.itemMap = this.game.add.group()
         
+        mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
         mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
         mapTmx.createFromObjects('Camada de Objetos 1', 3, 'boxVertical', 0, true, false, this.map, Block);
         mapTmx.createFromObjects('Camada de Objetos 1', 10, 'droid', 0, true, false, this.enemieMap, Enemie);     
-        mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
+        mapTmx.createFromObjects('Camada de Objetos 1', 13, 'star', 0, true, false, this.itemMap, Star);
         
     }
     
@@ -181,6 +183,7 @@ class PlayState extends GameState {
         this.map.destroy()
         this.holeMap.destroy()
         this.enemieMap.destroy()
+        this.itemMap.destroy()
         
         // Mapa level 3
         let mapTmx = this.game.add.tilemap('level3');
@@ -189,11 +192,13 @@ class PlayState extends GameState {
         this.map = this.game.add.group()
         this.holeMap = this.game.add.group()
         this.enemieMap = this.game.add.group()
+        this.itemMap = this.game.add.group()
         
+        mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
         mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
         mapTmx.createFromObjects('Camada de Objetos 1', 3, 'boxVertical', 0, true, false, this.map, Block);
         mapTmx.createFromObjects('Camada de Objetos 1', 10, 'droid', 0, true, false, this.enemieMap, Enemie);     
-        mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
+        mapTmx.createFromObjects('Camada de Objetos 1', 13, 'star', 0, true, false, this.itemMap, Star);
         
     }
 
@@ -210,6 +215,7 @@ class PlayState extends GameState {
         this.map.destroy()
         this.holeMap.destroy()
         this.enemieMap.destroy()
+        this.itemMap.destroy()
         
         // Mapa level 4
         let mapTmx = this.game.add.tilemap('level4');
@@ -218,12 +224,14 @@ class PlayState extends GameState {
         this.map = this.game.add.group()
         this.holeMap = this.game.add.group()
         this.enemieMap = this.game.add.group()
+        this.itemMap = this.game.add.group()
         
         mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
         mapTmx.createFromObjects('Camada de Objetos 1', 3, 'boxVertical', 0, true, false, this.map, Block);
         mapTmx.createFromObjects('Camada de Objetos 1', 10, 'droid', 0, true, false, this.enemieMap, Enemie);     
         mapTmx.createFromObjects('Camada de Objetos 1', 11, 'fire', 0, true, false, this.enemieMap, Fire);     
         mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);
+        mapTmx.createFromObjects('Camada de Objetos 1', 13, 'star', 0, true, false, this.itemMap, Star);
         
     }
 
@@ -243,6 +251,7 @@ class PlayState extends GameState {
         this.map.destroy()
         this.holeMap.destroy()
         this.enemieMap.destroy()
+        this.itemMap.destroy()
         
         // Mapa level 4
         let mapTmx = this.game.add.tilemap('level5');
@@ -251,6 +260,7 @@ class PlayState extends GameState {
         this.map = this.game.add.group()
         this.holeMap = this.game.add.group()
         this.enemieMap = this.game.add.group()
+        this.itemMap = this.game.add.group()
         
         mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
         mapTmx.createFromObjects('Camada de Objetos 1', 3, 'boxVertical', 0, true, false, this.map, Block);
@@ -258,6 +268,7 @@ class PlayState extends GameState {
         mapTmx.createFromObjects('Camada de Objetos 1', 11, 'fire', 0, true, false, this.enemieMap, Fire);     
         mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);
         mapTmx.createFromObjects('Camada de Objetos 1', 4, 'boss', 0, true, false, this.enemieMap, Boss);     
+        mapTmx.createFromObjects('Camada de Objetos 1', 13, 'star', 0, true, false, this.itemMap, Star);
         
     }
 
@@ -348,7 +359,8 @@ class PlayState extends GameState {
             this.map.destroy()
             this.holeMap.destroy()
             this.enemieMap.destroy()
-            
+            this.itemMap.destroy()
+
             this.textLevels.destroy()
             this.textTime.destroy()
             this.pauseButton.destroy()            
@@ -374,6 +386,7 @@ class PlayState extends GameState {
         this.map.destroy()
         this.holeMap.destroy()
         this.enemieMap.destroy()
+        this.itemMap.destroy()
         
         this.time = 0;
 		this.textTime.setText("Tempo: "+this.time);
