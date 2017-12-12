@@ -62,6 +62,7 @@ class Fire extends Phaser.Sprite {
        
         var anime = this.animations.add('spin', [0, 1, 2, 3], 6, true) //criar a animação com frames para estados dos sprites (0 a n)
         this.animations.play('spin')
+
     }
 }
 

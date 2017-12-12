@@ -17,6 +17,8 @@ class PlayState extends GameState {
         
         this.load.audio('audioHit', 'assets/bounce.mp3')
         this.load.audio('audioLevelUp', 'assets/smb_stage_clear.wav')
+        this.load.audio('audioFinalLevel', 'assets/smb3_fortress_clear.wav')
+        this.load.audio('audioDie', 'assets/smb_mariodie.wav')
         
         this.game.load.tilemap('level1', 'assets/map1.json', null, Phaser.Tilemap.TILED_JSON)
         this.game.load.tilemap('level2', 'assets/map2.json', null, Phaser.Tilemap.TILED_JSON)
@@ -75,6 +77,8 @@ class PlayState extends GameState {
         //adicionar audio
         this.hitSound = this.game.add.audio('audioHit');
         this.audioLevel = this.game.add.audio('audioLevelUp');        
+        this.audioFinal = this.game.add.audio('audioFinalLevel');        
+        this.audioDie = this.game.add.audio('audioDie')
 
         // adicionar controles de full screen a tela
         super.initFullScreenButtons()
@@ -216,8 +220,7 @@ class PlayState extends GameState {
 
     createMap5(){
         // Parar audio level e iniciar audio final
-        this.audioLevel.Stop()
-        
+        this.audioFinal.play()
         
         this.time = 0;
 		this.numberOfLevel++;
@@ -323,7 +326,9 @@ class PlayState extends GameState {
             this.createMap4()
 
         }else if(this.numberOfLevel == 4){
+            this.audioLevel.stop()
             this.createMap5()
+            
         }else {
             //this.game.camera.onFadeComplete.removeAll(this)            
             this.map.destroy()
@@ -347,7 +352,9 @@ class PlayState extends GameState {
     
     restart(){
         this.hitSound.play();
-		
+        this.audioLevel.stop();
+        this.audioDie.play();
+        
         alert('Que pena, voê morreu! :(');
         
         this.map.destroy()
