@@ -79,7 +79,7 @@ class PlayState extends GameState {
         this.fontMessage = { font: "24px Arial", fill: "#e4beef",  align: "center", stroke: "#320C3E", strokeThickness: 4 };
 		
 		this.game.paused = true;
-		var pausedText = this.add.text(this.game.width*0.5, 250, "JOGO PAUSADO!,\nclique para continuar!", this.fontMessage);
+		var pausedText = this.add.text(this.game.width*0.5, 250, "JOGO PAUSADO!\nclique para continuar!", this.fontMessage);
 		pausedText.anchor.set(0.5);
 		this.input.onDown.add(function(){
 			pausedText.destroy();
