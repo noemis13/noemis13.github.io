@@ -236,8 +236,6 @@ class PlayState extends GameState {
     }
 
     screenBounds() {
-        
-
         if (this.ball.y < this.game.height/12+this.ball.width) {
             this.ball.y = this.game.height/12+this.ball.width
         }

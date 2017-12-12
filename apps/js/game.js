@@ -12,8 +12,8 @@ class Game extends Phaser.Game {
         this.state.add('Play', PlayState, false)
         this.state.add('StartGame', StartGame, false)
         
-        //this.state.start('StartGame')
-        this.state.start('Play')
+        this.state.start('StartGame')
+        //this.state.start('Play')
         
         GAME = this
     }
