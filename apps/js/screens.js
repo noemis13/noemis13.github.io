@@ -90,7 +90,7 @@ class PlayState extends GameState {
 
     createHud(){
         // HUD
-        this.textVersion = this.createHealthText(this.game.width*7/9, 25, 'N1')
+        this.textVersion = this.createHealthText(this.game.width*7/9, 25, 'N6')
         this.textVersion.fixedToCamera = true
         
        // Pontuação
@@ -247,8 +247,17 @@ class PlayState extends GameState {
         
         } else if(this.numberOfLevel == 2){
             this.createMap3()
+        
         } else {
-            this.game.camera.onFadeComplete.removeAll(this)            
+            //this.game.camera.onFadeComplete.removeAll(this)            
+            this.map.destroy()
+            this.holeMap.destroy()
+            this.enemieMap.destroy()
+            
+            this.textLevels.destroy()
+            this.textTime.destroy()
+            this.pauseButton.destroy()
+
             this.state.start('GameOver')
         }
 	
