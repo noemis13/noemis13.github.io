@@ -23,10 +23,6 @@ class Hole extends Phaser.Sprite {
         this.body.immovable = true
         this.tag = 'hole'
         this.autoCull = true
-       
-        //var anime = this.animations.add('spin', [0, 1, 2, 3, 4, 5], 5, true) //criar a animação com frames para estados dos sprites (0 a n)
-        //this.animations.play('spin')
-        
         
     }
 }
@@ -94,8 +90,20 @@ class Boss extends Phaser.Sprite {
             .to( {x: this.x, y: this.y}, game.height/0.2 )
             //.to( {x: 50, y: 50}, game.height/0.2 )
             .loop(-1)
-            .start()
-        
+            .start()   
     }
+}
 
+class Star extends Phaser.Sprite {
+    constructor(game, x, y, asset) {
+       super(game, x, y, asset)
+        this.game.physics.arcade.enable(this)
+        this.anchor.setTo(0.5, 0.5) 
+        this.body.setCircle(this.width/3);
+        this.body.syncBounds = false
+        this.body.immovable = true
+        this.tag = 'star'
+        this.autoCull = true
+               
+    }
 }

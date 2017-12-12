@@ -11,6 +11,7 @@ class PlayState extends GameState {
         this.game.load.image('fullscreen-button', 'assets/fullscreen-button.png')
         this.game.load.image('pause', 'assets/button-pause.png')
         this.game.load.image('boss', 'assets/saw.png')
+        this.game.load.image('star', 'assets/star.png')
         
         this.game.load.spritesheet('droid', 'assets/droid.png', 32, 32)
         this.game.load.spritesheet('fire', 'assets/fire.png', 26, 32)
@@ -127,9 +128,11 @@ class PlayState extends GameState {
         this.map = this.game.add.group()
         this.holeMap = this.game.add.group()
         this.enemieMap = this.game.add.group()
-        
+        this.itemMap = this.game.add.group()
+
         mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
         mapTmx.createFromObjects('Camada de Objetos 1', 3, 'boxVertical', 0, true, false, this.map, Block);
+        mapTmx.createFromObjects('Camada de Objetos 1', 13, 'star', 0, true, false, this.itemMap, Star);
         mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
         
         this.numberOfLevel = 1;
@@ -385,10 +388,11 @@ class PlayState extends GameState {
 
     
     render() {
-      //  this.game.debug.body(this.ball)
+      //this.game.debug.body(this.ball)
         //this.holeMap.forEach( this.game.debug.body, this.game.debug, true);
         //this.map.forEach( this.game.debug.body, this.game.debug, true);
         //this.enemieMap.forEach( this.game.debug.body, this.game.debug, true);
+       // this.itemMap.forEach( this.game.debug.body, this.game.debug, true);
         
         
     }
