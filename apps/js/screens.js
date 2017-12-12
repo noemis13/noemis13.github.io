@@ -6,6 +6,7 @@ class PlayState extends GameState {
         this.game.load.image('background', 'assets/screen-bg.png')
         this.game.load.image('panel', 'assets/panel.png')
         this.game.load.image('box', 'assets/element-w.png')
+        this.game.load.image('boxVertical', 'assets/element-w2.png')
         this.game.load.image('hole', 'assets/hole.png')     
         this.game.load.image('fullscreen-button', 'assets/fullscreen-button.png')
         this.game.load.image('pause', 'assets/button-pause.png')
@@ -45,7 +46,6 @@ class PlayState extends GameState {
         this.ball.anchor.set(0.5);        
         this.game.physics.enable(this.ball, Phaser.Physics.ARCADE)
         this.ball.body.setCircle(this.ball.width/2);
-
         this.ball.body.collideWorldBounds = true
         this.ball.body.bounce.set(0.3, 0.3)
         //this.ball.body.maxVelocity = 50
@@ -109,6 +109,7 @@ class PlayState extends GameState {
         this.holeMap = this.game.add.group()
         
         mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
+        mapTmx.createFromObjects('Camada de Objetos 1', 3, 'boxVertical', 0, true, false, this.map, Block);
         mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
         
         this.numberOfLevel = 1;
@@ -139,6 +140,7 @@ class PlayState extends GameState {
         this.enemieMap = this.game.add.group()
         
         mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
+        mapTmx.createFromObjects('Camada de Objetos 1', 3, 'boxVertical', 0, true, false, this.map, Block);
         mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
         mapTmx.createFromObjects('Camada de Objetos 1', 10, 'droid', 0, true, false, this.enemieMap, Enemie);     
         
@@ -170,6 +172,7 @@ class PlayState extends GameState {
         this.enemieMap = this.game.add.group()
         
         mapTmx.createFromObjects('Camada de Objetos 1', 2, 'box', 0, true, false, this.map, Block);
+        mapTmx.createFromObjects('Camada de Objetos 1', 3, 'boxVertical', 0, true, false, this.map, Block);
         mapTmx.createFromObjects('Camada de Objetos 1', 1, 'hole', 0, true, false, this.holeMap, Hole);     
         mapTmx.createFromObjects('Camada de Objetos 1', 10, 'droid', 0, true, false, this.enemieMap, Enemie);     
         
@@ -268,7 +271,11 @@ class PlayState extends GameState {
     
     render() {
         this.game.debug.body(this.ball)
-       
+        this.holeMap.forEach( this.game.debug.body, this.game.debug, true);
+        this.map.forEach( this.game.debug.body, this.game.debug, true);
+        //this.enemieMap.forEach( this.game.debug.body, this.game.debug, true);
+        
+        
     }
 }
 

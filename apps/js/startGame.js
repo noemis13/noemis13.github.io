@@ -1,6 +1,7 @@
 'use strict'
 
 class StartGame extends Phaser.State {
+    
     preload(){
         this.game.load.image('background', 'assets/screen-bg.png')
         this.game.load.spritesheet('start', 'assets/button-start.png', 146, 51)
