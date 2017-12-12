@@ -67,8 +67,8 @@ class Boss extends Phaser.Sprite {
        super(game, x, y, asset)
         this.game.physics.arcade.enable(this)
         this.anchor.set(0.5) 
-        this.body.syncBounds = true
-        this.body.setCircle(this.width/2);
+        //this.body.syncBounds = true
+        this.body.setCircle(this.width/2.5);
         
         this.body.immovable = true
         this.tag = 'saw'

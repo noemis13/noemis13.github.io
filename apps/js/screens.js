@@ -387,7 +387,7 @@ class PlayState extends GameState {
         this.holeMap.destroy()
         this.enemieMap.destroy()
         this.itemMap.destroy()
-        
+
         this.time = 0;
 		this.textTime.setText("Tempo: "+this.time);
 		this.textLevels.setText("Level:1/3 ");
