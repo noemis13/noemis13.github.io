@@ -308,8 +308,9 @@ class PlayState extends GameState {
         }
 
         // Colisão
-        this.physics.arcade.collide(this.ball, this.holeMap, this.finishLevel, null, this);
+        this.physics.arcade.collide(this.ball, this.holeMap, this.finishLevel, null, this)
         this.physics.arcade.collide(this.ball, this.enemieMap, this.restart, null, this)
+        this.physics.arcade.collide(this.ball, this.itemMap, this.getStar, null, this)
         
 
         // Limite da bola
@@ -330,43 +331,51 @@ class PlayState extends GameState {
         this.textTime.text = 'TEMPO: '+this.time 
     }
 
-    finishLevel(){       
-        //Audio finald e level
-        this.audioLevel.play()
-
-        alert('Parabéns, fase completa!! !\nTempo total de jogo: '+this.time+' segundos!');
-
-        if(this.numberOfLevel == 1){
-            this.audioLevel1.stop()
-            this.createMap2()
+    finishLevel(){
+        if(this.star == 1){
+            //Audio finald e level
+            this.audioLevel.play()
         
-        } else if(this.numberOfLevel == 2){
-            this.createMap3()
-        
-        }else if(this.numberOfLevel == 3){
-            this.createMap4()
-
-        }else if(this.numberOfLevel == 4){
-            this.audioLevel.stop()
-            this.createMap5()
+            alert('Parabéns, fase completa!! !\nTempo total de jogo: '+this.time+' segundos!');
+    
+            if(this.numberOfLevel == 1){
+                this.star = 0
+                this.audioLevel1.stop()
+                this.createMap2()
             
-        }else {
-            this.audioLevel.stop()
-            this.audioLevel1.stop()
-            this.audioLevel1.play()
-        
-            //this.game.camera.onFadeComplete.removeAll(this)            
-            this.map.destroy()
-            this.holeMap.destroy()
-            this.enemieMap.destroy()
-            this.itemMap.destroy()
-
-            this.textLevels.destroy()
-            this.textTime.destroy()
-            this.pauseButton.destroy()            
+            } else if(this.numberOfLevel == 2){
+                this.star = 0
+                this.createMap3()
             
-            this.state.start('GameOver')
+            }else if(this.numberOfLevel == 3){
+                this.star = 0
+                this.createMap4()
+    
+            }else if(this.numberOfLevel == 4){
+                this.star = 0
+                this.audioLevel.stop()
+                this.createMap5()
+                
+            }else {
+                this.star = 0
+                this.audioLevel.stop()
+                this.audioLevel1.stop()
+                this.audioLevel1.play()
+            
+                //this.game.camera.onFadeComplete.removeAll(this)            
+                this.map.destroy()
+                this.holeMap.destroy()
+                this.enemieMap.destroy()
+                this.itemMap.destroy()
+    
+                this.textLevels.destroy()
+                this.textTime.destroy()
+                this.pauseButton.destroy()            
+                
+                this.state.start('GameOver')
+            }
         }
+        
 	
     }
 
@@ -397,6 +406,11 @@ class PlayState extends GameState {
         this.ball.body.velocity.y = 0;
         
         this.createMap()
+    }
+
+    getStar(){
+        this.star = 1
+        this.itemMap.destroy()
     }
 
     
