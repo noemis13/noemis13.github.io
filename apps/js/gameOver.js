@@ -25,6 +25,7 @@ class GameOver extends Phaser.State {
 
     create() {
         super.create()     
+        this.game.world.setBounds(0, 0, 320, 480);
         
         // Fundo
         let background = this.game.add.tileSprite(0, 0, this.game.width, this.game.height, 'background')

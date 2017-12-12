@@ -15,13 +15,15 @@ class PlayState extends GameState {
         this.game.load.spritesheet('droid', 'assets/droid.png', 32, 32)
         this.game.load.spritesheet('fire', 'assets/fire.png', 26, 32)
         
-        this.load.audio('audioHit', 'assets/bounce.m4a')
-
+        this.load.audio('audioHit', 'assets/bounce.mp3')
+        this.load.audio('audioLevelUp', 'assets/smb_stage_clear.wav')
+        
         this.game.load.tilemap('level1', 'assets/map1.json', null, Phaser.Tilemap.TILED_JSON)
         this.game.load.tilemap('level2', 'assets/map2.json', null, Phaser.Tilemap.TILED_JSON)
         this.game.load.tilemap('level3', 'assets/map3.json', null, Phaser.Tilemap.TILED_JSON)
         this.game.load.tilemap('level4', 'assets/map4.json', null, Phaser.Tilemap.TILED_JSON)
         this.game.load.tilemap('level5', 'assets/map5.json', null, Phaser.Tilemap.TILED_JSON)
+     
     }
 
     create() {
@@ -72,6 +74,7 @@ class PlayState extends GameState {
 
         //adicionar audio
         this.hitSound = this.game.add.audio('audioHit');
+        this.audioLevel = this.game.add.audio('audioLevelUp');        
 
         // adicionar controles de full screen a tela
         super.initFullScreenButtons()
@@ -93,9 +96,6 @@ class PlayState extends GameState {
 	
 
     createHud(){
-        // HUD
-        this.textVersion = this.createHealthText(this.game.width*7/9, 25, 'N10')
-        this.textVersion.fixedToCamera = true
         
        // Pontuação
        this.textLevels = this.createHealthText(this.game.width*2/9, 25, 'LEVEL:1/5 ')
@@ -215,7 +215,11 @@ class PlayState extends GameState {
     }
 
     createMap5(){
-		this.time = 0;
+        // Parar audio level e iniciar audio final
+        this.audioLevel.Stop()
+        
+        
+        this.time = 0;
 		this.numberOfLevel++;
 		this.textTime.setText("TEMPO: "+this.time);
 		this.textLevels.setText("Level:5/5 ");
@@ -304,7 +308,11 @@ class PlayState extends GameState {
     }
 
     finishLevel(){       
+        //Audio finald e level
+        this.audioLevel.play()
+
         alert('Parabéns, fase completa!! !\nTempo total de jogo: '+this.time+' segundos!');
+
         if(this.numberOfLevel == 1){
             this.createMap2()
         
@@ -325,6 +333,7 @@ class PlayState extends GameState {
             this.textLevels.destroy()
             this.textTime.destroy()
             this.pauseButton.destroy()            
+            
             this.state.start('GameOver')
         }
 	
