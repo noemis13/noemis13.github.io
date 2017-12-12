@@ -211,6 +211,7 @@ class PlayState extends GameState {
         // Colisão
         this.physics.arcade.collide(this.ball, this.map, this.boxCollision, null, this);
         this.physics.arcade.collide(this.ball, this.holeMap, this.finishLevel, null, this);
+        this.physics.arcade.collide(this.ball, this.enemieMap, this.restart, null, this)
         //this.physics.arcade.collide(this.ball, this.holeMap, this.boxCollision, null, this);
         
 
@@ -246,9 +247,27 @@ class PlayState extends GameState {
         }
     }
     
+    restart(){
+        alert('Que pena, voê morreu! :(');
+        
+        this.map.destroy()
+        this.holeMap.destroy()
+        this.enemieMap.destroy()
+        
+        this.time = 0;
+		this.textTime.setText("Tempo: "+this.timer);
+		this.textLevels.setText("Level:1/3 ");
+		this.ball.body.x = this.game.width/2;
+		this.ball.body.y = this.game.height-40;
+		this.ball.body.velocity.x = 0;
+        this.ball.body.velocity.y = 0;
+        
+        this.createMap()
+    }
 
+    
     render() {
-       this.game.debug.body(this.ball)
+        this.game.debug.body(this.ball)
        
     }
 }
