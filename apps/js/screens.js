@@ -418,7 +418,7 @@ class PlayState extends GameState {
         }
 
         
-        alert('Too bad, you\'ve died! :(');
+        alert('Too bad, you have died! :(');
         
         this.map.destroy()
         this.holeMap.destroy()
