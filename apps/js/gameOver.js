@@ -1,18 +1,18 @@
-'use strict'
+﻿'use strict'
 
 var content = [
     " ",
-    "Trabalho realizado \npor:",
+    "Work done by \npor:",
     "Noemi Scherer",
     " ",
     "Nelson Vieira",
     " ",
-    "Disciplina: \nDesenvolvimento \nde \njogos",
+    "Subject: \nGame \nDevelopment",
     "Prof. Dr. Marcos\n Silvano",
     "    ",
     "UTFPR 2017",
-    "Campus \nCampo\n Mourão",
-    "Muito obrigado!!",
+    "Campo\n Mourão",
+    "Thank you!!",
 ];
 var text;
 var index = 0;

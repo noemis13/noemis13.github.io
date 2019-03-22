@@ -1,4 +1,4 @@
-
+﻿
 class PlayState extends GameState {
 
     preload() {
@@ -110,7 +110,7 @@ class PlayState extends GameState {
         this.fontMessage = { font: "24px Arial", fill: "#e4beef",  align: "center", stroke: "#320C3E", strokeThickness: 4 };
 		
 		this.game.paused = true;
-		var pausedText = this.add.text(this.game.width*0.5, 250, "JOGO PAUSADO!\nclique para continuar!", this.fontMessage);
+		var pausedText = this.add.text(this.game.width*0.5, 250, "PAUSED GAME!\ntouch to continuous!", this.fontMessage);
 		pausedText.anchor.set(0.5);
 		this.input.onDown.add(function(){
 			pausedText.destroy();
@@ -127,7 +127,7 @@ class PlayState extends GameState {
         
        // Tempo
        this.time = 0
-       this.textTime = this.createHealthText(this.game.width*5/9, 25, 'TEMPO: '+this.time)
+       this.textTime = this.createHealthText(this.game.width*5/9, 25, 'TIME: '+this.time)
        this.textTime.fixedToCamera = true
        this.game.time.events.loop(1000, this.updateTime, this);
 
@@ -346,7 +346,7 @@ class PlayState extends GameState {
 
     updateTime(){
         this.time = this.time+1
-        this.textTime.text = 'TEMPO: '+this.time 
+        this.textTime.text = 'TIME: '+this.time 
     }
 
     finishLevel(){
@@ -356,7 +356,7 @@ class PlayState extends GameState {
                 this.audioLevel.play()
             }
                     
-            alert('Parabéns, fase completa!! !\nTempo total de jogo: '+this.time+' segundos!');
+            alert('Congrads, complete phase!! !\nGame total time: '+this.time+' segundos!');
     
             if(this.numberOfLevel == 1){
                 this.star = 0
@@ -418,7 +418,7 @@ class PlayState extends GameState {
         }
 
         
-        alert('Que pena, voê morreu! :(');
+        alert('Too bad, you've died! :(');
         
         this.map.destroy()
         this.holeMap.destroy()
